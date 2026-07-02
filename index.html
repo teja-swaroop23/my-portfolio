@@ -1,113 +1,531 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teja Swaroop Vaddi | Portfolio</title>
-    <style>
-        :root {
-            --bg-color: #0d1117;
-            --text-color: #c9d1d9;
-            --accent-color: #58a6ff;
-            --card-bg: #161b22;
-            --border-color: #30363d;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 20px 40px 20px;
-            text-align: center;
-            border-bottom: 1px solid var(--border-color);
-        }
-        h1 { color: #ffffff; margin: 0 0 10px 0; font-size: 2.5rem; }
-        .subtitle { color: var(--accent-color); font-size: 1.2rem; margin: 0 0 20px 0; font-weight: 500; }
-        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-        section { margin-bottom: 40px; }
-        h2 { color: #ffffff; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; margin-bottom: 20px; }
-        .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
-        .skill-badge { background: var(--card-bg); border: 1px solid var(--border-color); padding: 8px 14px; border-radius: 6px; font-size: 0.9rem; color: #f0f6fc; }
-        .project-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 24px; margin-bottom: 20px; }
-        .project-title { color: #ffffff; font-size: 1.4rem; font-weight: bold; margin: 0 0 5px 0; }
-        .project-tech { font-size: 0.85rem; color: var(--accent-color); font-weight: 500; margin-bottom: 15px; }
-        .project-card p { margin: 0 0 15px 0; font-size: 0.95rem; color: #8b949e; }
-        .contact-list { list-style: none; padding: 0; }
-        .contact-list li { margin-bottom: 10px; }
-        a { color: var(--accent-color); text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        footer { text-align: center; padding: 40px 20px; color: #8b949e; border-top: 1px solid var(--border-color); font-size: 0.85rem; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teja Swaroop Vaddi | ECE Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0b1b30;
+      --card: rgba(15, 35, 59, 0.72);
+      --text: #eaf4ff;
+      --muted: #9eb4ca;
+      --blue: #4da3ff;
+      --cyan: #29e0d1;
+      --border: rgba(126, 180, 235, 0.18);
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 10%, rgba(41, 224, 209, 0.12), transparent 25%),
+        radial-gradient(circle at 85% 20%, rgba(77, 163, 255, 0.14), transparent 28%),
+        var(--bg);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.16;
+      background-image:
+        linear-gradient(rgba(77, 163, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(77, 163, 255, 0.1) 1px, transparent 1px);
+      background-size: 42px 42px;
+      z-index: -1;
+    }
+
+    nav {
+      width: min(1120px, 92%);
+      margin: 18px auto;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 1px solid var(--border);
+      background: rgba(7, 17, 31, 0.7);
+      backdrop-filter: blur(14px);
+      border-radius: 14px;
+      position: sticky;
+      top: 14px;
+      z-index: 10;
+    }
+
+    .logo {
+      font-family: "DM Mono", monospace;
+      color: var(--cyan);
+      font-size: 0.9rem;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 18px;
+      font-size: 0.9rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--cyan);
+    }
+
+    .hero {
+      width: min(1120px, 92%);
+      min-height: 78vh;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
+      gap: 40px;
+      align-items: center;
+      padding: 70px 0;
+    }
+
+    .tag {
+      color: var(--cyan);
+      font-family: "DM Mono", monospace;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 6vw, 5.6rem);
+      line-height: 1;
+      margin: 16px 0;
+      letter-spacing: -3px;
+    }
+
+    h1 span {
+      color: var(--blue);
+    }
+
+    .hero p {
+      color: var(--muted);
+      max-width: 650px;
+      font-size: 1.08rem;
+      line-height: 1.8;
+    }
+
+    .hero-buttons {
+      margin-top: 30px;
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 13px 20px;
+      border-radius: 9px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      color: #021019;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(41, 224, 209, 0.25);
+    }
+
+    .btn-outline {
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .hero-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 28px;
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .hero-card h3 {
+      margin-top: 0;
+      color: var(--cyan);
+      font-family: "DM Mono", monospace;
+      font-size: 0.9rem;
+    }
+
+    .stat {
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+    }
+
+    .stat:last-child {
+      border-bottom: none;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.35rem;
+      color: white;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: auto;
+    }
+
+    section {
+      padding: 85px 0 15px;
+    }
+
+    .section-label {
+      font-family: "DM Mono", monospace;
+      color: var(--cyan);
+      font-size: 0.82rem;
+      letter-spacing: 1px;
+    }
+
+    h2 {
+      font-size: 2.3rem;
+      margin: 10px 0 25px;
+    }
+
+    .about-text {
+      max-width: 850px;
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 1.05rem;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .skill {
+      padding: 11px 15px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(14, 37, 63, 0.7);
+      color: #dbeeff;
+      font-family: "DM Mono", monospace;
+      font-size: 0.85rem;
+      transition: 0.25s;
+    }
+
+    .skill:hover {
+      transform: translateY(-4px);
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 25px;
+      min-height: 290px;
+      display: flex;
+      flex-direction: column;
+      transition: 0.35s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: "";
+      width: 120px;
+      height: 120px;
+      position: absolute;
+      right: -45px;
+      top: -45px;
+      border-radius: 50%;
+      background: rgba(41, 224, 209, 0.1);
+    }
+
+    .project-card:hover {
+      transform: translateY(-9px);
+      border-color: rgba(41, 224, 209, 0.65);
+      box-shadow: var(--shadow);
+    }
+
+    .project-number {
+      color: var(--cyan);
+      font-family: "DM Mono", monospace;
+      font-size: 0.8rem;
+    }
+
+    .project-card h3 {
+      font-size: 1.35rem;
+      margin: 15px 0 10px;
+    }
+
+    .tech {
+      color: var(--blue);
+      font-family: "DM Mono", monospace;
+      font-size: 0.78rem;
+      line-height: 1.6;
+    }
+
+    .project-card p {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.94rem;
+      margin-top: 18px;
+    }
+
+    .contact-box {
+      background: linear-gradient(135deg, rgba(41, 224, 209, 0.12), rgba(77, 163, 255, 0.1));
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 35px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .contact-box p {
+      color: var(--muted);
+      margin-bottom: 0;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 60px 20px 35px;
+      font-size: 0.85rem;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: all 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+        padding-top: 45px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav .nav-links {
+        display: none;
+      }
+
+      .contact-box {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-    <header>
-        <h1>Teja Swaroop Vaddi</h1>
-        <div class="subtitle">Embedded Systems & Firmware Engineer</div>
-        <p>B.Tech ECE Graduate | Specializing in Hardware-Software Interaction, Microcontrollers, and IoT</p>
-    </header>
+  <nav>
+    <div class="logo">&lt;TSV /&gt;</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-    <div class="container">
-        <section id="about">
-            <h2>About Me</h2>
-            <p>I focus on firmware development and core electronics architecture. I am passionate about bringing physical components to life using optimized, modular low-level software. Seeking opportunities as a Graduate Engineer Trainee (GET) to contribute to innovative hardware teams.</p>
-        </section>
+  <header class="hero">
+    <div>
+      <div class="tag">// ECE STUDENT · EMBEDDED SYSTEMS</div>
+      <h1>Teja Swaroop<br><span>Vaddi.</span></h1>
+      <p>
+        Electronics and Communication Engineering student focused on embedded systems,
+        firmware development, digital electronics, and hardware-software integration.
+      </p>
 
-        <section id="skills">
-            <h2>Technical Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-badge">C / C++</div>
-                <div class="skill-badge">Python</div>
-                <div class="skill-badge">STM32 (ARM Cortex-M)</div>
-                <div class="skill-badge">Raspberry Pi</div>
-                <div class="skill-badge">ESP32 & AVR</div>
-                <div class="skill-badge">I2C / SPI / UART</div>
-                <div class="skill-badge">Digital Logic & VLSI</div>
-                <div class="skill-badge">Keil uVision / STM32CubeIDE</div>
-            </div>
-        </section>
-
-        <section id="projects">
-            <h2>Featured Projects</h2>
-            
-            <div class="project-card">
-                <div class="project-title">Real-Time Threat Mitigation System</div>
-                <div class="project-tech">Raspberry Pi · YOLOv11 · Edge AI Framework</div>
-                <p>Engineered an automated facial recognition alert pipeline optimized to balance processing latency and detection accuracy on constrained hardware platforms.</p>
-            </div>
-
-            <div class="project-card">
-                <div class="project-title">Smart Anti-Sleeping Glasses for Accident Prevention</div>
-                <div class="project-tech">IR Sensor · Microcontroller Architecture · Real-Time Alert System</div>
-                <p>Engineered an intelligent wearable device that continuously monitors eye blink intervals. Developed low-latency threshold logic to instantly trigger an audible alarm if drowsiness patterns or extended eyelid closures are detected.</p>
-            </div>
-
-            <div class="project-card">
-                <div class="project-title">Sign-to-Text Assistive Communication Glove</div>
-                <div class="project-tech">Flex Sensors · Microcontroller Matrix · I2C Protocol</div>
-                <p>Developed a wearable glove framework translating analogue hand motion data arrays cleanly into instant digital communication strings.</p>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2>Connect With Me</h2>
-            <ul class="contact-list">
-                <li><strong>Email:</strong> <a href="mailto:tejaswaroop2384@gmail.com">tejaswaroop2384@gmail.com</a></li>
-                <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/tejaswaroopvaddi" target="_blank">linkedin.com/in/tejaswaroopvaddi</a></li>
-                <li><strong>GitHub:</strong> <a href="https://github.com/teja-swaroop23" target="_blank">github.com/teja-swaroop23</a></li>
-            </ul>
-        </section>
+      <div class="hero-buttons">
+        <a class="btn btn-primary" href="#projects">View Projects</a>
+        <a class="btn btn-outline" href="https://github.com/teja-swaroop23" target="_blank">GitHub Profile ↗</a>
+      </div>
     </div>
 
-    <footer>
-        <p>© 2026 Teja Swaroop Vaddi. Built for Core Engineering.</p>
-    </footer>
+    <div class="hero-card">
+      <h3>ENGINEERING PROFILE</h3>
+      <div class="stat">
+        <strong>9.5 CGPA</strong>
+        <span>B.Tech ECE · Embedded Systems</span>
+      </div>
+      <div class="stat">
+        <strong>96%</strong>
+        <span>Diploma in Electronics & Communication</span>
+      </div>
+      <div class="stat">
+        <strong>Core Focus</strong>
+        <span>Firmware · Microcontrollers · Semiconductor Roles</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section id="about" class="reveal">
+      <div class="section-label">// 01. ABOUT</div>
+      <h2>Engineering hardware into intelligent systems.</h2>
+      <p class="about-text">
+        I am an ECE student specializing in Embedded Systems, interested in core engineering
+        roles at semiconductor and technology companies. I enjoy working with microcontrollers,
+        communication protocols, real-time systems, and low-level software that connects
+        electronics with practical applications.
+      </p>
+    </section>
+
+    <section id="skills" class="reveal">
+      <div class="section-label">// 02. TECHNICAL SKILLS</div>
+      <h2>Tools & Technologies</h2>
+      <div class="skills-grid">
+        <div class="skill">C / C++</div>
+        <div class="skill">Python</div>
+        <div class="skill">Embedded C</div>
+        <div class="skill">STM32 / ARM Cortex-M</div>
+        <div class="skill">ESP32</div>
+        <div class="skill">8051 / AVR</div>
+        <div class="skill">UART</div>
+        <div class="skill">SPI</div>
+        <div class="skill">I2C</div>
+        <div class="skill">GPIO / ADC / PWM</div>
+        <div class="skill">Digital Electronics</div>
+        <div class="skill">VLSI Basics</div>
+        <div class="skill">Keil uVision</div>
+        <div class="skill">STM32CubeIDE</div>
+        <div class="skill">Git / GitHub</div>
+      </div>
+    </section>
+
+    <section id="projects" class="reveal">
+      <div class="section-label">// 03. FEATURED WORK</div>
+      <h2>Selected Projects</h2>
+
+      <div class="projects-grid">
+
+        <article class="project-card">
+          <div class="project-number">PROJECT 01</div>
+          <h3>Real-Time Threat Mitigation System</h3>
+          <div class="tech">Raspberry Pi · YOLOv11 · Edge AI</div>
+          <p>
+            Built an automated detection and alert pipeline optimized for low-latency
+            operation on constrained edge hardware.
+          </p>
+        </article>
+
+        <article class="project-card">
+          <div class="project-number">PROJECT 02</div>
+          <h3>Smart Anti-Sleeping Glasses</h3>
+          <div class="tech">IR Sensor · Microcontroller · Buzzer</div>
+          <p>
+            Designed a wearable drowsiness detection system that monitors eye-blink
+            patterns and triggers real-time alerts for driver safety.
+          </p>
+        </article>
+
+        <article class="project-card">
+          <div class="project-number">PROJECT 03</div>
+          <h3>Sign-to-Text Communication Glove</h3>
+          <div class="tech">Flex Sensors · I2C · Embedded System</div>
+          <p>
+            Developed a wearable glove that captures hand-motion sensor data and
+            translates it into readable digital communication output.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="contact" class="reveal">
+      <div class="section-label">// 04. CONTACT</div>
+      <h2>Let’s connect.</h2>
+
+      <div class="contact-box">
+        <div>
+          <strong>Open to Graduate Engineer Trainee opportunities.</strong>
+          <p>Interested in embedded systems, firmware, hardware validation, and semiconductor engineering roles.</p>
+        </div>
+
+        <div class="hero-buttons">
+          <a class="btn btn-primary" href="mailto:tejaswaroop2384@gmail.com">Email Me</a>
+          <a class="btn btn-outline" href="https://www.linkedin.com/in/tejaswaroopvaddi" target="_blank">LinkedIn ↗</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Teja Swaroop Vaddi · Built for Core Engineering.
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll(".reveal");
+
+    function revealOnScroll() {
+      reveals.forEach((section) => {
+        const top = section.getBoundingClientRect().top;
+        const visible = window.innerHeight - 100;
+
+        if (top < visible) {
+          section.classList.add("active");
+        }
+      });
+    }
+
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+  </script>
 
 </body>
 </html>
