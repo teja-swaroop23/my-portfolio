@@ -123,9 +123,9 @@
 
   /* ---------- hero ---------- */
   header.hero{
-    padding:70px 0 40px;
+    padding:60px 0 20px;
     display:grid; grid-template-columns:1.15fr .85fr; gap:44px; align-items:start;
-    min-height:82vh;
+    min-height:auto;
   }
 
   .terminal{
@@ -211,7 +211,7 @@
   }
 
   /* ---------- sections ---------- */
-  section{ padding:100px 0 10px; }
+  section{ padding:80px 0 10px; }
   .section-head{ margin-bottom:32px; }
   .section-head h2{
     font-family:var(--mono); font-weight:700; letter-spacing:-1px;
@@ -291,16 +291,19 @@
   .reveal.active{ opacity:1; transform:translateY(0); }
 
   @media (max-width:980px){
-    .hero, .about-grid, .skills-grid, .projects-grid{ grid-template-columns:1fr; }
+    header.hero, .hero, .about-grid, .skills-grid, .projects-grid{ grid-template-columns:1fr !important; }
+    header.hero { padding-top: 30px; gap: 24px; }
     .nav-links{ display:none; }
     .nav-toggle{ display:block; }
     .connector{ flex-direction:column; align-items:flex-start; }
   }
   @media (max-width:640px){
-    h1{ letter-spacing:-1px; }
+    h1{ letter-spacing:-1px; margin-top: 10px; }
     .panel, .project-card, .device, .connector{ padding:20px; }
     .btn{ width:100%; justify-content:center; }
-    .hero-actions{ display:grid; }
+    .hero-actions{ display:grid; gap: 10px; }
+    .terminal { margin-bottom: 16px; }
+    section { padding: 40px 0 10px; }
   }
 </style>
 </head>
