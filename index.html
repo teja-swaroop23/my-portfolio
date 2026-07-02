@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teja Swaroop Vaddi | Portfolio</title>
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --text-color: #c9d1d9;
+            --accent-color: #58a6ff;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+        h1 { color: #ffffff; margin: 0 0 10px 0; font-size: 2.5rem; }
+        .subtitle { color: var(--accent-color); font-size: 1.2rem; margin: 0 0 20px 0; font-weight: 500; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        section { margin-bottom: 40px; }
+        h2 { color: #ffffff; border-bottom: 1px solid var(--border-color); padding-bottom: 8px; margin-bottom: 20px; }
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        .skill-badge { background: var(--card-bg); border: 1px solid var(--border-color); padding: 8px 14px; border-radius: 6px; font-size: 0.9rem; color: #f0f6fc; }
+        .project-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 8px; padding: 24px; margin-bottom: 20px; }
+        .project-title { color: #ffffff; font-size: 1.4rem; font-weight: bold; margin: 0 0 5px 0; }
+        .project-tech { font-size: 0.85rem; color: var(--accent-color); font-weight: 500; margin-bottom: 15px; }
+        .project-card p { margin: 0 0 15px 0; font-size: 0.95rem; color: #8b949e; }
+        .contact-list { list-style: none; padding: 0; }
+        .contact-list li { margin-bottom: 10px; }
+        a { color: var(--accent-color); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        footer { text-align: center; padding: 40px 20px; color: #8b949e; border-top: 1px solid var(--border-color); font-size: 0.85rem; }
+    </style>
+</head>
+<body>
 
+    <header>
+        <h1>Teja Swaroop Vaddi</h1>
+        <div class="subtitle">Embedded Systems & Firmware Engineer</div>
+        <p>B.Tech ECE Graduate | Specializing in Hardware-Software Interaction, Microcontrollers, and IoT</p>
+    </header>
+
+    <div class="container">
+        <section id="about">
+            <h2>About Me</h2>
+            <p>I focus on firmware development and core electronics architecture. I am passionate about bringing physical components to life using optimized, modular low-level software. Seeking opportunities as a Graduate Engineer Trainee (GET) to contribute to innovative hardware teams.</p>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-badge">C / C++</div>
+                <div class="skill-badge">Python</div>
+                <div class="skill-badge">STM32 (ARM Cortex-M)</div>
+                <div class="skill-badge">Raspberry Pi</div>
+                <div class="skill-badge">ESP32 & AVR</div>
+                <div class="skill-badge">I2C / SPI / UART</div>
+                <div class="skill-badge">Digital Logic & VLSI</div>
+                <div class="skill-badge">Keil uVision / STM32CubeIDE</div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Featured Projects</h2>
+            
+            <div class="project-card">
+                <div class="project-title">Real-Time Threat Mitigation System</div>
+                <div class="project-tech">Raspberry Pi · YOLOv11 · Edge AI Framework</div>
+                <p>Engineered an automated facial recognition alert pipeline optimized to balance processing latency and detection accuracy on constrained hardware platforms.</p>
+            </div>
+
+            <div class="project-card">
+                <div class="project-title">Sign-to-Text Assistive Communication Glove</div>
+                <div class="project-tech">Flex Sensors · Microcontroller Matrix · I2C Protocol</div>
+                <p>Developed a wearable glove framework translating analogue hand motion data arrays cleanly into instant digital communication strings.</p>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Connect With Me</h2>
+            <ul class="contact-list">
+                <li><strong>Email:</strong> <a href="mailto:tejaswaroop2384@gmail.com">tejaswaroop2384@gmail.com</a></li>
+                <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/tejaswaroopvaddi" target="_blank">linkedin.com/in/tejaswaroopvaddi</a></li>
+                <li><strong>GitHub:</strong> <a href="https://github.com/teja-swaroop23" target="_blank">github.com/teja-swaroop23</a></li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>© 2026 Teja Swaroop Vaddi. Built for Core Engineering.</p>
+    </footer>
+
+</body>
+</html>
