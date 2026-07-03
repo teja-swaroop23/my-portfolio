@@ -163,8 +163,9 @@
 
   h1{
     font-family:var(--mono); font-weight:800;
-    font-size:clamp(2.4rem,5.6vw,4.4rem); line-height:1.02; letter-spacing:-1.5px;
-    margin:16px 0 6px;
+    font-size:clamp(1.8rem, 4.8vw, 3.8rem); line-height:1.1; letter-spacing:-0.5px;
+    margin:16px 0 12px;
+    white-space: nowrap;
   }
   h1 .last{ color:var(--copper-bright); }
   .role-line{
@@ -297,13 +298,14 @@
   @media (max-width:980px){
     header.hero, .hero, .about-grid, .skills-grid, .projects-grid{ grid-template-columns:1fr !important; width: 100% !important; }
     header.hero { padding-top: 30px; gap: 24px; }
+    h1 { white-space: normal !important; } /* Lets the text wrap nicely only on small screens */
     .nav-inner { padding: 12px 24px; }
     .nav-links{ display:none; }
     .nav-toggle{ display:block; margin-right: 0; }
     .type-line { white-space: pre-wrap !important; width: 100% !important; border-right: none !important; animation: none !important; }
   }
   @media (max-width:640px){
-    h1{ letter-spacing:-1px; margin-top: 10px; }
+    h1{ letter-spacing:-0.5px; margin-top: 10px; font-size: 2.2rem !important; }
     .panel, .project-card, .device, .connector{ padding:20px; }
     .btn{ width:100%; justify-content:center; }
     .hero-actions{ display:grid; gap: 10px; }
@@ -502,7 +504,7 @@
       <p>I am open to Graduate Engineer Trainee (GET) roles, embedded systems opportunities, firmware development positions, and semiconductor-related entry-level roles where I can contribute and keep learning.</p>
       <div class="connector-links">
         <a class="btn btn-primary" href="mailto:tejaswaroop2384@gmail.com">Email Me</a>
-        <a class="btn btn-outline" href="https://www.linkedin.com/in/tejaswaroopvaddi" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn btn-outline" href="https://www.linkedin.com/in/tejaswaroopvaddi/" target="_blank" rel="noopener">LinkedIn ↗</a>
         <a class="btn btn-outline" href="https://github.com/teja-swaroop23" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
     </div>
