@@ -3,382 +3,334 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Teja Swaroop Vaddi — Embedded & ADAS Software Engineer</title>
-<meta name="description" content="Portfolio of Teja Swaroop Vaddi — GET at Hyundai Mobis, LKA/PDW ADAS Application Software Group." />
+<title>Teja Swaroop Vaddi — Embedded Systems Engineer</title>
+<meta name="description" content="Embedded systems & firmware engineering portfolio of Teja Swaroop Vaddi." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <meta name="google-site-verification" content="PEYk1cowNOG4mAEVFucg3GVXkeifm9c2yPBwVjIS9UQ" />
 <style>
   :root{
-    --bg-0:#050810;
-    --bg-1:#0a1018;
-    --bg-2:#0f1828;
-    --bg-3:#142240;
-    --accent:#00d4ff;
-    --accent-dim:rgba(0,212,255,.15);
-    --accent-glow:rgba(0,212,255,.5);
-    --cyan:#2ee6d6;
-    --warn:#ffaa00;
-    --danger:#ff3366;
+    --pcb-0:#060f0a;
+    --pcb-1:#0b1c13;
+    --pcb-2:#12281c;
+    --pcb-3:#183626;
     --copper:#d98d3f;
     --copper-bright:#f4b567;
     --silk:#eef3ec;
-    --muted:#7a8a9a;
-    --muted-dim:#5a6a7a;
-    --line:rgba(0,212,255,.12);
+    --muted:#8fa89a;
+    --muted-dim:#63796d;
+    --signal:#6fe7c9;
+    --signal-dim:rgba(111,231,201,.18);
+    --trace:rgba(217,141,63,.22);
+    --line:rgba(217,141,63,.18);
     --radius:14px;
     --mono:'JetBrains Mono', ui-monospace, monospace;
     --sans:'IBM Plex Sans', system-ui, sans-serif;
   }
 
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth;overflow-x:hidden;width:100%}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth; overflow-x: hidden; width: 100%;}
   body{
+    margin:0;
     font-family:var(--sans);
     color:var(--silk);
-    background:var(--bg-0);
+    background:var(--pcb-0);
     background-image:
-      radial-gradient(circle at 12% 8%, rgba(0,212,255,.05), transparent 30%),
-      radial-gradient(circle at 88% 15%, rgba(46,230,214,.04), transparent 32%),
-      linear-gradient(180deg,#050810,#0a1018 40%,#050810);
+      radial-gradient(circle at 12% 8%, rgba(217,141,63,.05), transparent 30%),
+      radial-gradient(circle at 88% 15%, rgba(111,231,201,.05), transparent 32%),
+      linear-gradient(180deg,#060f0a,#08150e 40%,#060f0a);
     overflow-x:hidden;
     position:relative;
-    width:100%;
-    line-height:1.6;
+    width: 100%;
   }
 
   body::before{
-    content:"";position:fixed;inset:0;z-index:-3;pointer-events:none;
+    content:"";
+    position:fixed; inset:0; z-index:-3; pointer-events:none;
     background-image:
-      linear-gradient(rgba(0,212,255,.04) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(0,212,255,.04) 1px,transparent 1px);
+      linear-gradient(rgba(217,141,63,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(217,141,63,.05) 1px, transparent 1px);
     background-size:38px 38px;
   }
-
-  #canvas-container{
-    position:fixed;inset:0;z-index:-2;pointer-events:none;
+  body::after{
+    content:"";
+    position:fixed; inset:0; z-index:-3; pointer-events:none; opacity:.04;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  #car-loader{
-    position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:-1;
-    font-family:var(--mono);color:var(--accent);font-size:.82rem;
-    text-align:center;pointer-events:none;transition:opacity .6s ease;
+  #trace-bg{
+    position:fixed; inset:0; width:100vw; height:100vh; z-index:-2; pointer-events:none;
+    opacity:.55;
   }
-  #car-loader.hidden{opacity:0}
-  #car-loader .spinner{
-    width:40px;height:40px;border:2px solid var(--line);border-top-color:var(--accent);
-    border-radius:50%;margin:0 auto 12px;animation:spin 1s linear infinite;
+  #trace-bg path{ fill:none; stroke:var(--trace); stroke-width:1.4; }
+  #trace-bg .via{ fill:var(--copper); opacity:.5; }
+  #trace-bg .pulse{ fill:var(--signal); filter:drop-shadow(0 0 4px var(--signal)); }
+
+  @media (prefers-reduced-motion: reduce){
+    #trace-bg .pulse, .reveal, .type-line{ animation:none !important; }
   }
-  @keyframes spin{to{transform:rotate(360deg)}}
 
-  .wrap{width:min(1200px,92%);margin:0 auto;position:relative;min-width:0}
+  .wrap{ width:min(1180px,92%); margin:0 auto; position:relative; min-width: 0; }
 
-  ::selection{background:var(--accent);color:var(--bg-0)}
+  ::selection{ background:var(--copper); color:#08150e; }
 
-  a{color:inherit}
+  a{ color:inherit; }
 
-  /* ============ NAV ============ */
   nav{
-    position:sticky;top:0;z-index:100;
-    backdrop-filter:blur(16px);
-    background:rgba(5,8,16,.82);
+    position:sticky; top:0; z-index:40;
+    backdrop-filter:blur(14px);
+    background:rgba(6,15,10,.72);
     border-bottom:1px solid var(--line);
     width:100%;
+    left:0;
+    right:0;
   }
   .nav-inner{
-    width:100%;max-width:1200px;margin:0 auto;
-    display:flex;align-items:center;justify-content:space-between;
-    padding:14px 4%;
+    width:100%;
+    max-width:1180px;
+    margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 4%;
   }
-  .brand{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-weight:700}
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--mono); font-weight:700; letter-spacing:.5px;
+  }
   .brand-chip{
-    width:38px;height:38px;border-radius:8px;
-    border:1.5px solid var(--accent);
-    display:grid;place-items:center;font-size:.68rem;color:var(--accent);
-    background:linear-gradient(155deg,rgba(0,212,255,.14),transparent);
+    width:36px; height:36px; border-radius:8px;
+    border:1.5px solid var(--copper);
+    display:grid; place-items:center;
+    font-size:.68rem; color:var(--copper-bright);
+    background:linear-gradient(155deg, rgba(217,141,63,.14), transparent);
     position:relative;
   }
-  .brand-chip::before,.brand-chip::after{
-    content:"";position:absolute;width:6px;height:1.5px;background:var(--accent);
-    left:-6px;top:50%;
+  .brand-chip::before, .brand-chip::after{
+    content:""; position:absolute; width:6px; height:1.5px; background:var(--copper);
+    left:-6px; top:50%;
   }
-  .brand-chip::after{left:auto;right:-6px}
-  .brand span{color:var(--muted);font-weight:500;font-size:.82rem;display:none}
-  .nav-links{display:flex;gap:4px;align-items:center;font-family:var(--mono);font-size:.8rem}
+  .brand-chip::after{ left:auto; right:-6px; }
+  .brand span{ color:var(--muted); font-weight:500; font-size:.86rem; }
+
+  .nav-links{ display:flex; gap:4px; align-items:center; font-family:var(--mono); font-size:.82rem; }
   .nav-links a{
-    text-decoration:none;color:var(--muted);padding:8px 12px;border-radius:8px;
-    transition:.2s ease;
+    text-decoration:none; color:var(--muted); padding:9px 13px; border-radius:8px;
+    display:flex; align-items:center; gap:8px; position:relative; transition:.2s ease;
   }
-  .nav-links a:hover,.nav-links a.active{color:var(--silk);background:rgba(0,212,255,.08)}
+  .nav-links a::before{
+    content:""; width:5px; height:5px; background:var(--muted-dim); border-radius:1px; transition:.2s ease;
+  }
+  .nav-links a:hover, .nav-links a.active{ color:var(--silk); background:rgba(217,141,63,.08); }
+  .nav-links a:hover::before, .nav-links a.active::before{ background:var(--signal); box-shadow:0 0 6px var(--signal); }
 
-  .nav-toggle{background:none;border:1px solid var(--line);border-radius:8px;width:38px;height:38px;color:var(--silk);cursor:pointer;display:none}
+  .nav-toggle{ background:none; border:1px solid var(--line); border-radius:8px; width:38px; height:38px; color:var(--silk); cursor:pointer; }
 
-  /* ============ HERO ============ */
-  .hero{
-    min-height:100vh;display:flex;flex-direction:column;justify-content:center;
-    padding:100px 0 40px;position:relative;
+  header.hero{
+    padding:60px 0 20px;
+    display:grid; grid-template-columns:1.15fr .85fr; gap:44px; align-items:start;
+    min-height:auto;
+    min-width: 0;
+    width: 100%;
   }
-  .hero-inner{
-    display:grid;grid-template-columns:1.1fr .9fr;gap:50px;align-items:center;
-    width:100%;
+
+  .terminal{
+    border:1px solid var(--line); border-radius:var(--radius);
+    background:rgba(9,20,14,.65);
+    font-family:var(--mono); font-size:.86rem; line-height:1.9;
+    padding:16px 18px; margin-bottom:26px;
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+    width: 100%;
+    overflow: hidden;
   }
-  .hero-content{z-index:2}
+  .terminal-bar{ display:flex; gap:6px; margin-bottom:10px; }
+  .terminal-bar span{ width:9px; height:9px; border-radius:50%; background:var(--muted-dim); }
+  .terminal-bar span:nth-child(1){ background:#e0785f; }
+  .terminal-bar span:nth-child(2){ background:#e0b85f; }
+  .terminal-bar span:nth-child(3){ background:var(--signal); }
+  .type-line{ color:var(--muted); white-space:pre; overflow:hidden; border-right:2px solid transparent; width:0; animation:type 1.1s steps(40,end) forwards, caret .8s step-end infinite; }
+  .type-line b{ color:var(--copper-bright); font-weight:600; }
+  .type-line .ok{ color:var(--signal); }
+  .type-line:nth-child(1){ animation-delay:.3s, .3s; }
+  .type-line:nth-child(2){ animation-delay:1.5s, 1.5s; }
+  .type-line:nth-child(3){ animation-delay:2.7s, 2.7s; }
+  @keyframes type{ from{ width:0 } to{ width:100% } }
+  @keyframes caret{ 50%{ border-color: var(--signal) } }
+
   .eyebrow{
-    font-family:var(--mono);color:var(--accent);letter-spacing:2px;
-    font-size:.74rem;text-transform:uppercase;display:flex;align-items:center;gap:8px;
-    margin-bottom:14px;
+    font-family:var(--mono); color:var(--copper-bright); letter-spacing:2px;
+    font-size:.76rem; text-transform:uppercase; display:flex; align-items:center; gap:8px;
   }
-  .eyebrow::before{content:"//";color:var(--muted-dim)}
+  .eyebrow::before{ content:"§"; color:var(--muted-dim); }
 
   h1{
-    font-family:var(--mono);font-weight:800;
-    font-size:clamp(2rem,5.2vw,4.2rem);line-height:1.08;letter-spacing:-1px;
-    margin-bottom:14px;
+    font-family:var(--mono); font-weight:800;
+    font-size:clamp(1.8rem, 4.8vw, 3.8rem); line-height:1.1; letter-spacing:-0.5px;
+    margin:16px 0 12px;
+    white-space: nowrap;
   }
-  h1 .accent{color:var(--accent)}
-
+  h1 .last{ color:var(--copper-bright); }
   .role-line{
-    font-family:var(--mono);color:var(--cyan);font-size:1rem;margin-bottom:22px;
-    display:flex;align-items:center;gap:10px;flex-wrap:wrap;
+    font-family:var(--mono); color:var(--signal); font-size:1rem; margin-bottom:20px;
+    display:flex; align-items:center; gap:10px;
   }
-  .role-line .led{width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 8px var(--cyan);animation:blink 2s ease-in-out infinite}
-  @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+  .role-line .led{ width:8px; height:8px; border-radius:50%; background:var(--signal); box-shadow:0 0 8px var(--signal); animation:blink 2.2s ease-in-out infinite; }
+  @keyframes blink{ 0%,100%{ opacity:1 } 50%{ opacity:.35 } }
 
-  .lead{color:var(--muted);line-height:1.8;max-width:580px;margin-bottom:28px;font-size:1rem}
+  .lead{ color:var(--muted); line-height:1.85; max-width:600px; margin-bottom:30px; font-size:1.02rem; }
 
-  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px}
+  .hero-actions{ display:flex; gap:14px; flex-wrap:wrap; }
   .btn{
-    font-family:var(--mono);font-size:.82rem;font-weight:600;
-    display:inline-flex;align-items:center;gap:10px;text-decoration:none;
-    padding:12px 20px;border-radius:8px;transition:.25s ease;
+    font-family:var(--mono); font-size:.86rem; font-weight:600;
+    display:inline-flex; align-items:center; gap:10px; text-decoration:none;
+    padding:13px 20px; border-radius:8px; transition:.25s ease; position:relative;
   }
-  .btn-primary{background:linear-gradient(135deg,var(--accent),var(--cyan));color:var(--bg-0);box-shadow:0 14px 34px rgba(0,212,255,.25)}
-  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(0,212,255,.35)}
-  .btn-outline{border:1px solid var(--line);color:var(--silk);background:rgba(255,255,255,.02)}
-  .btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+  .btn::before, .btn::after{ content:""; position:absolute; width:2px; height:10px; background:var(--copper); top:-10px; }
+  .btn::before{ left:14px; } .btn::after{ right:14px; }
+  .btn-primary{ background:linear-gradient(135deg, var(--copper), var(--copper-bright)); color:#0a1710; box-shadow:0 14px 34px rgba(217,141,63,.22); }
+  .btn-primary:hover{ transform:translateY(-3px); }
+  .btn-outline{ border:1px solid var(--line); color:var(--silk); background:rgba(255,255,255,.02); }
+  .btn-outline:hover{ border-color:var(--signal); color:var(--signal); transform:translateY(-3px); }
 
-  .hero-stats{display:flex;gap:28px;flex-wrap:wrap}
-  .stat{font-family:var(--mono)}
-  .stat .val{font-size:1.4rem;font-weight:700;color:var(--accent)}
-  .stat .lbl{font-size:.72rem;color:var(--muted-dim);text-transform:uppercase;letter-spacing:1px}
-
-  /* HUD card */
-  .hud-card{
-    border:1px solid var(--line);border-radius:18px;
-    background:rgba(10,16,24,.55);backdrop-filter:blur(12px);
-    padding:24px;box-shadow:0 20px 60px rgba(0,0,0,.4);
-    position:relative;overflow:hidden;
+  .device{
+    border:1px solid var(--line); border-radius:var(--radius);
+    background:linear-gradient(180deg, rgba(18,40,28,.7), rgba(9,20,14,.6));
+    padding:22px; box-shadow:0 20px 60px rgba(0,0,0,.35); position:relative;
+    width: 100%;
   }
-  .hud-card::before{
-    content:"";position:absolute;top:0;left:0;right:0;height:2px;
-    background:linear-gradient(90deg,transparent,var(--accent),transparent);
-    animation:scan 3s ease-in-out infinite;
+  .device-head{ display:flex; justify-content:space-between; align-items:center; font-family:var(--mono); margin-bottom:16px; }
+  .device-head .part{ color:var(--copper-bright); font-weight:700; letter-spacing:1px; font-size:.92rem; }
+  .device-head .pin1{ width:8px; height:8px; border-radius:50%; background:var(--signal); box-shadow:0 0 6px var(--signal); }
+  .pin-table{ display:grid; gap:0; }
+  .pin-row{
+    display:grid; grid-template-columns:52px 1fr; gap:14px;
+    padding:13px 0; border-top:1px solid var(--line);
   }
-  @keyframes scan{0%,100%{opacity:0}50%{opacity:1}}
+  .pin-row:first-child{ border-top:none; }
+  .pin-row:nth-child(1) .pin-val strong { color: #ffffff; }
+  .pin-row:nth-child(2) .pin-val strong { color: #ffffff; }
+  .pin-tag{ font-family:var(--mono); font-size:.72rem; color:var(--copper); display:flex; flex-direction:column; gap:2px; }
+  .pin-tag em{ font-style:normal; color:var(--muted-dim); font-size:.66rem; }
+  .pin-val strong{ display:block; font-size:.98rem; margin-bottom:3px; font-weight:600; }
+  .pin-val span{ color:#8fa89a; font-size:0.85rem; line-height:1.6; }
+  .status-strip{
+    margin-top:18px; padding:11px 14px; border-radius:8px; font-family:var(--mono); font-size:.8rem;
+    background:var(--signal-dim); color:var(--signal); border:1px solid rgba(111,231,201,.25);
+    display:flex; align-items:center; gap:9px;
+  }
 
-  .hud-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-family:var(--mono)}
-  .hud-title{color:var(--accent);font-weight:700;font-size:.9rem;letter-spacing:1px}
-  .hud-status{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--cyan)}
-  .hud-status .dot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 6px var(--cyan);animation:blink 1.5s ease-in-out infinite}
-
-  .radar-vis{width:100%;height:240px;position:relative;border-radius:12px;overflow:hidden;background:rgba(0,0,0,.35);margin-bottom:14px}
-  .radar-vis svg{width:100%;height:100%}
-
-  .hud-rows{display:flex;flex-direction:column;gap:0}
-  .hud-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-top:1px solid var(--line);font-family:var(--mono);font-size:.82rem}
-  .hud-row:first-child{border-top:none}
-  .hud-row .key{color:var(--muted)}
-  .hud-row .val{color:var(--silk);font-weight:600}
-  .hud-row .val.active{color:var(--cyan)}
-
-  /* ============ SECTIONS ============ */
-  section{padding:80px 0 20px;width:100%;min-width:0}
-  .section-head{margin-bottom:36px}
+  section{ padding:80px 0 10px; width: 100%; min-width: 0; }
+  .section-head{ margin-bottom:32px; }
   .section-head h2{
-    font-family:var(--mono);font-weight:700;letter-spacing:-1px;
-    font-size:clamp(1.6rem,3.4vw,2.4rem);margin:8px 0 0;
+    font-family:var(--mono); font-weight:700; letter-spacing:-1px;
+    font-size:clamp(1.7rem,3.4vw,2.5rem); margin:10px 0 0;
   }
-  .section-note{color:var(--muted);max-width:560px;line-height:1.7;margin-top:10px;font-size:.92rem}
+  .section-note{ color:var(--muted); max-width:520px; line-height:1.7; margin-top:12px; font-size:.96rem; }
 
   .panel{
-    border:1px solid var(--line);border-radius:18px;
-    background:linear-gradient(180deg,rgba(15,24,40,.5),rgba(10,16,24,.3));
-    padding:28px;width:100%;
+    border:1px solid var(--line); border-radius:18px;
+    background:linear-gradient(180deg, rgba(18,40,28,.55), rgba(9,20,14,.4));
+    padding:28px;
+    width: 100%;
   }
 
-  /* ============ EXPERIENCE ============ */
-  .exp-timeline{position:relative;padding-left:28px}
-  .exp-timeline::before{
-    content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;
-    background:linear-gradient(180deg,var(--accent),transparent);
-  }
-  .exp-item{position:relative;padding-bottom:40px}
-  .exp-item:last-child{padding-bottom:0}
-  .exp-item::before{
-    content:"";position:absolute;left:-28px;top:4px;width:14px;height:14px;
-    border-radius:50%;background:var(--bg-0);border:2px solid var(--accent);
-    box-shadow:0 0 10px var(--accent-glow);
-  }
-  .exp-badge{
-    display:inline-block;font-family:var(--mono);font-size:.72rem;
-    color:var(--accent);padding:4px 10px;border-radius:6px;
-    background:var(--accent-dim);border:1px solid var(--line);margin-bottom:10px;
-  }
-  .exp-item h3{font-size:1.15rem;font-weight:700;margin-bottom:4px}
-  .exp-item .company{color:var(--cyan);font-family:var(--mono);font-size:.88rem;margin-bottom:10px}
-  .exp-item p{color:var(--muted);line-height:1.8;font-size:.92rem}
-  .exp-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
-  .exp-tags span{
-    font-family:var(--mono);font-size:.7rem;color:var(--muted);
-    padding:5px 9px;border-radius:5px;border:1px solid var(--line);
-  }
+  .about-grid{ display:grid; grid-template-columns:1.2fr .8fr; gap:20px; min-width: 0; width: 100%; }
+  .about-text{ color:var(--muted); line-height:1.95; font-size:1.02rem; }
+  .about-text strong{ color:var(--silk); font-weight:600; }
 
-  /* ============ ADAS DEMO ============ */
-  .adas-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;min-width:0}
-  .adas-card{
-    border:1px solid var(--line);border-radius:18px;
-    background:linear-gradient(180deg,rgba(15,24,40,.55),rgba(10,16,24,.35));
-    padding:28px;position:relative;overflow:hidden;
+  .chips{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{
+    font-family:var(--mono); font-size:.78rem; color:var(--silk);
+    padding:9px 12px; border-radius:6px; border:1px solid var(--line);
+    background:rgba(217,141,63,.05); position:relative; padding-left:20px;
   }
-  .adas-card h3{font-size:1.1rem;font-weight:700;margin-bottom:4px}
-  .adas-card .subtitle{font-family:var(--mono);font-size:.76rem;color:var(--accent);letter-spacing:1px;margin-bottom:16px}
-  .adas-card p{color:var(--muted);line-height:1.7;font-size:.9rem;margin-bottom:16px}
-  .adas-viz{border-radius:12px;overflow:hidden;background:rgba(0,0,0,.4);border:1px solid var(--line)}
-  .adas-viz svg{display:block;width:100%;height:auto}
+  .chip::before{ content:""; position:absolute; left:8px; top:50%; transform:translateY(-50%); width:5px; height:5px; border-radius:50%; background:var(--copper); }
 
-  /* ============ SKILLS ============ */
-  .skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;min-width:0}
+  .skills-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; min-width: 0; width: 100%; }
   .skill-card{
-    border:1px solid var(--line);border-radius:14px;padding:22px;
-    background:rgba(10,16,24,.5);transition:.25s ease;position:relative;overflow:hidden;
+    border:1px solid var(--line); border-radius:14px; padding:20px;
+    background:rgba(12,26,18,.55); transition:.25s ease; min-height:150px; position:relative; overflow:hidden;
   }
-  .skill-card::after{
-    content:"";position:absolute;bottom:0;left:0;width:0;height:2px;
-    background:var(--accent);transition:width .4s ease;
-  }
-  .skill-card:hover{transform:translateY(-5px);border-color:rgba(0,212,255,.3);box-shadow:0 16px 40px rgba(0,0,0,.3)}
-  .skill-card:hover::after{width:100%}
-  .skill-ref{font-family:var(--mono);color:var(--accent);font-size:.7rem;letter-spacing:1px;margin-bottom:10px;display:block}
-  .skill-card h3{margin:0 0 8px;font-size:1.05rem;font-weight:600}
-  .skill-card p{margin:0;color:var(--muted);line-height:1.65;font-size:.88rem}
+  .skill-card:hover{ transform:translateY(-5px); border-color:rgba(111,231,201,.35); box-shadow:0 16px 40px rgba(0,0,0,.28); }
+  .skill-ref{ font-family:var(--mono); color:var(--copper); font-size:.72rem; letter-spacing:1px; margin-bottom:10px; display:block; }
+  .skill-card h3{ margin:0 0 9px; font-size:1.06rem; font-weight:600; }
+  .skill-card p{ margin:0; color:var(--muted); line-height:1.7; font-size:.9rem; }
 
-  /* ============ PROJECTS ============ */
-  .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;min-width:0}
+  .projects-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; min-width: 0; width: 100%; }
   .project-card{
-    position:relative;border:1px solid var(--line);border-radius:16px;
-    padding:24px;min-height:300px;
-    background:linear-gradient(180deg,rgba(15,24,40,.5),rgba(10,16,24,.3));
-    transition:.3s ease;overflow:hidden;
-    display:flex;flex-direction:column;
+    position:relative; border:1px solid var(--line); border-radius:16px;
+    padding:24px; min-height:340px;
+    background:linear-gradient(180deg, rgba(18,40,28,.6), rgba(9,20,14,.45));
+    transition:.3s ease;
   }
+  .project-card:hover{ transform:translateY(-8px); border-color:var(--copper); box-shadow:0 22px 55px rgba(0,0,0,.4); }
   .project-card::before{
-    content:"";position:absolute;top:0;left:0;right:0;height:2px;
-    background:linear-gradient(90deg,transparent,var(--accent),transparent);
-    opacity:0;transition:.3s ease;
+    content:""; position:absolute; top:16px; right:16px; width:10px; height:10px; border-radius:50%;
+    background:var(--muted-dim); transition:.3s ease;
   }
-  .project-card:hover{transform:translateY(-8px);border-color:var(--accent);box-shadow:0 22px 55px rgba(0,0,0,.4)}
-  .project-card:hover::before{opacity:1}
-  .ic-label{font-family:var(--mono);font-size:.7rem;color:var(--accent);letter-spacing:1px}
-  .project-card h3{margin:12px 0 6px;font-size:1.2rem;line-height:1.3;font-weight:700}
-  .project-tech{font-family:var(--mono);font-size:.7rem;color:var(--cyan);letter-spacing:.4px;text-transform:uppercase}
-  .project-card p{margin:14px 0 0;color:var(--muted);line-height:1.7;font-size:.9rem;flex:1}
-  .pin-legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
-  .pin-legend span{font-family:var(--mono);font-size:.68rem;padding:5px 8px;border-radius:5px;border:1px solid var(--line);color:var(--muted)}
-  .project-link{margin-top:14px}
-  .project-link a{
-    font-family:var(--mono);font-size:.78rem;color:var(--accent);text-decoration:none;
-    display:inline-flex;align-items:center;gap:6px;transition:.2s ease;
+  .project-card:hover::before{ background:var(--signal); box-shadow:0 0 8px var(--signal); }
+  .ic-label{ font-family:var(--mono); font-size:.72rem; color:var(--copper-bright); letter-spacing:1px; }
+  .project-card h3{ margin:14px 0 6px; font-size:1.28rem; line-height:1.3; font-weight:700; }
+  .project-tech{ font-family:var(--mono); font-size:.72rem; color:var(--signal); letter-spacing:.4px; text-transform:uppercase; }
+  .project-card p{ margin:16px 0 0; color:var(--muted); line-height:1.8; font-size:.93rem; }
+  .pin-legend{ display:flex; gap:8px; flex-wrap:wrap; margin-top:18px; }
+  .pin-legend span{
+    font-family:var(--mono); font-size:.7rem; padding:6px 9px; border-radius:5px;
+    border:1px solid var(--line); color:var(--muted);
   }
-  .project-link a:hover{color:var(--cyan)}
 
-  /* ============ GITHUB ============ */
-  .gh-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;min-width:0}
-  .gh-card{
-    border:1px solid var(--line);border-radius:12px;padding:18px;
-    background:rgba(10,16,24,.5);transition:.25s ease;
-    display:flex;flex-direction:column;gap:8px;
-  }
-  .gh-card:hover{border-color:var(--accent);transform:translateY(-4px)}
-  .gh-card .gh-name{font-family:var(--mono);font-size:.88rem;font-weight:600;color:var(--silk)}
-  .gh-card .gh-desc{font-size:.82rem;color:var(--muted);line-height:1.6;flex:1}
-  .gh-card .gh-meta{display:flex;gap:12px;font-family:var(--mono);font-size:.7rem;color:var(--muted-dim);align-items:center}
-  .gh-lang{display:flex;align-items:center;gap:5px}
-  .gh-lang .dot{width:8px;height:8px;border-radius:50%}
-  .gh-card .gh-link{font-family:var(--mono);font-size:.72rem;color:var(--accent);text-decoration:none;margin-top:4px}
-
-  /* ============ CONTACT ============ */
   .connector{
-    display:flex;justify-content:space-between;align-items:center;gap:26px;flex-wrap:wrap;
-    padding:36px;border-radius:18px;border:1px solid var(--line);
-    background:linear-gradient(135deg,rgba(0,212,255,.06),rgba(46,230,214,.04));
+    display:flex; justify-content:space-between; align-items:center; gap:26px; flex-wrap:wrap;
+    padding:34px; border-radius:18px; border:1px solid var(--line);
+    background:linear-gradient(135deg, rgba(217,141,63,.09), rgba(111,231,201,.05));
+    width: 100%;
   }
-  .connector p{color:var(--muted);line-height:1.8;max-width:600px;margin:0}
-  .connector-links{display:flex;gap:12px;flex-wrap:wrap}
+  .connector p{ color:var(--muted); line-height:1.8; max-width:600px; margin:0; }
+  .connector-links{ display:flex; gap:12px; flex-wrap:wrap; }
 
   footer{
-    padding:50px 0 30px;text-align:center;color:var(--muted-dim);
-    font-family:var(--mono);font-size:.74rem;letter-spacing:.4px;
+    padding:60px 0 36px; text-align:center; color:var(--muted-dim);
+    font-family:var(--mono); font-size:.78rem; letter-spacing:.4px;
+    width: 100%;
   }
 
-  /* ============ ANIMATIONS ============ */
-  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
-  .reveal.active{opacity:1;transform:translateY(0)}
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.active{ opacity:1; transform:translateY(0); }
 
-  /* ADAS SVG element animations */
-  .adar-sweep{transform-origin:center;animation:sweep 4s linear infinite}
-  @keyframes sweep{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-  .adas-car-body{animation:driftY 3s ease-in-out infinite alternate}
-  @keyframes driftY{0%{transform:translateY(0)}100%{transform:translateY(-3px)}}
-  .lka-steer{animation:steer 4s ease-in-out infinite}
-  @keyframes steer{0%,100%{transform:translateX(0)}25%{transform:translateX(8px)}75%{transform:translateX(-8px)}}
-  .lka-lane-left{animation:laneL 3s linear infinite}
-  .lka-lane-right{animation:laneR 3s linear infinite}
-  @keyframes laneL{0%{stroke-dashoffset:0}100%{stroke-dashoffset:-40}}
-  @keyframes laneR{0%{stroke-dashoffset:0}100%{stroke-dashoffset:-40}}
-  .pdw-warn{animation:pdwBlink 1.5s ease-in-out infinite}
-  @keyframes pdwBlink{0%,100%{opacity:0}50%{opacity:1}}
-  .pdw-wave{animation:wave 2s ease-out infinite}
-  @keyframes wave{0%{r:20;opacity:.8}100%{r:80;opacity:0}}
-  .pdw-wave2{animation:wave 2s ease-out infinite .6s}
-  .pdw-wave3{animation:wave 2s ease-out infinite 1.2s}
-
-  @media (prefers-reduced-motion:reduce){
-    .reveal,.adas-car-body,.lka-steer,.lka-lane-left,.lka-lane-right,.pdw-warn,.pdw-wave,.pdw-wave2,.pdw-wave3,.adar-sweep,.hud-card::before{animation:none!important;transition:none!important}
-    .reveal{opacity:1;transform:none}
-  }
-
-  /* ============ RESPONSIVE ============ */
   @media (max-width:980px){
-    .hero-inner,.adas-grid,.skills-grid,.projects-grid,.gh-grid{grid-template-columns:1fr!important}
-    .hero{min-height:auto;padding:80px 0 30px}
-    .nav-links{display:none}
-    .nav-toggle{display:block}
-    .nav-links.open{
-      display:flex!important;position:absolute;top:60px;left:4%;right:4%;
-      flex-direction:column;background:rgba(5,8,16,.97);
-      border:1px solid var(--line);border-radius:12px;padding:10px;gap:2px;
-    }
-    .nav-links.open a{padding:12px 14px}
+    header.hero, .hero, .about-grid, .skills-grid, .projects-grid{ grid-template-columns:1fr !important; width: 100% !important; }
+    header.hero { padding-top: 30px; gap: 24px; }
+    h1 { white-space: normal !important; } /* Lets the text wrap nicely only on small screens */
+    .nav-inner { padding: 12px 24px; }
+    .nav-links{ display:none; }
+    .nav-toggle{ display:block; margin-right: 0; }
+    .type-line { white-space: pre-wrap !important; width: 100% !important; border-right: none !important; animation: none !important; }
   }
   @media (max-width:640px){
-    .hero-stats{gap:18px}
-    .stat .val{font-size:1.2rem}
-    .panel,.adas-card,.project-card,.connector{padding:20px}
-    .btn{width:100%;justify-content:center}
-    .hero-actions{display:grid;gap:10px}
-    section{padding:50px 0 10px}
-    .exp-timeline{padding-left:22px}
+    h1{ letter-spacing:-0.5px; margin-top: 10px; font-size: 2.2rem !important; }
+    .panel, .project-card, .device, .connector{ padding:20px; }
+    .btn{ width:100%; justify-content:center; }
+    .hero-actions{ display:grid; gap: 10px; }
+    .terminal { margin-bottom: 16px; }
+    section { padding: 40px 0 10px; }
   }
 </style>
-  <meta property="og:image" content="https://bolt.new/static/og_default.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://bolt.new/static/og_default.png">
 </head>
 <body>
 
-<div id="canvas-container"></div>
-<div id="car-loader"><div class="spinner"></div>Loading vehicle model...</div>
+<svg id="trace-bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+  <path id="t1" d="M -20 120 L 220 120 L 260 160 L 520 160 L 560 120 L 900 120 L 940 160 L 1460 160" />
+  <path id="t2" d="M -20 320 L 160 320 L 200 280 L 480 280 L 520 320 L 780 320 L 820 360 L 1460 360" />
+  <path id="t3" d="M -20 560 L 300 560 L 340 600 L 640 600 L 680 560 L 1000 560 L 1040 520 L 1460 520" />
+  <path id="t4" d="M -20 760 L 240 760 L 280 720 L 600 720 L 640 760 L 1000 760 L 1040 800 L 1460 800" />
+  <circle class="via" cx="220" cy="120" r="3.5" /><circle class="via" cx="560" cy="120" r="3.5" /><circle class="via" cx="940" cy="160" r="3.5" />
+  <circle class="via" cx="200" cy="280" r="3.5" /><circle class="via" cx="520" cy="320" r="3.5" /><circle class="via" cx="820" cy="360" r="3.5" />
+  <circle class="via" cx="340" cy="600" r="3.5" /><circle class="via" cx="680" cy="560" r="3.5" /><circle class="via" cx="1040" cy="520" r="3.5" />
+  <circle class="via" cx="280" cy="720" r="3.5" /><circle class="via" cx="640" cy="760" r="3.5" /><circle class="via" cx="1040" cy="800" r="3.5" />
+  <circle class="pulse" r="3.2"><animateMotion dur="6s" repeatCount="indefinite"><mpath href="#t1"/></animateMotion></circle>
+  <circle class="pulse" r="3.2"><animateMotion dur="7.5s" begin="1.5s" repeatCount="indefinite"><mpath href="#t2"/></animateMotion></circle>
+  <circle class="pulse" r="3.2"><animateMotion dur="6.8s" begin=".7s" repeatCount="indefinite"><mpath href="#t3"/></animateMotion></circle>
+  <circle class="pulse" r="3.2"><animateMotion dur="8s" begin="2.2s" repeatCount="indefinite"><mpath href="#t4"/></animateMotion></circle>
+</svg>
 
 <nav>
   <div class="nav-inner">
@@ -387,11 +339,10 @@
       <span>teja_swaroop</span>
     </div>
     <div class="nav-links" id="navLinks">
-      <a href="#experience" class="active">Experience</a>
-      <a href="#adas">ADAS</a>
+      <a href="#about" class="active">About</a>
       <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
       <a href="#projects">Projects</a>
-      <a href="#github">GitHub</a>
       <a href="#contact">Contact</a>
     </div>
     <button class="nav-toggle" id="navToggle" aria-label="menu">☰</button>
@@ -399,317 +350,159 @@
 </nav>
 
 <main class="wrap">
-
-  <!-- ===== HERO ===== -->
-  <section class="hero" id="hero">
-    <div class="hero-inner">
-      <div class="hero-content reveal active">
-        <div class="eyebrow">SYSTEM ONLINE · ADAS SOFTWARE ENGINEER</div>
-        <h1>Teja Swaroop<br><span class="accent">Vaddi</span></h1>
-        <div class="role-line">
-          <span class="led"></span>
-          GET — ADAS Application Software · LKA / PDW
-        </div>
-        <p class="lead">Embedded systems and firmware engineer now building production ADAS software at Hyundai Mobis. I work on Lane Keeping Assist (LKA) and Parking Distance Warning (PDW) features in the ADAS application software group — bridging hardware sensing, real-time logic, and safety-critical automotive software.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#projects">View Projects</a>
-          <a class="btn btn-outline" href="https://github.com/teja-swaroop23" target="_blank" rel="noopener">GitHub ↗</a>
-          <a class="btn btn-outline" href="https://www.linkedin.com/in/tejaswaroopvaddi/" target="_blank" rel="noopener">LinkedIn ↗</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat"><div class="val">9.5</div><div class="lbl">CGPA · B.Tech</div></div>
-          <div class="stat"><div class="val">96%</div><div class="lbl">Diploma · Rank 102</div></div>
-          <div class="stat"><div class="val">8+</div><div class="lbl">GitHub Repos</div></div>
-          <div class="stat"><div class="val">Hyundai</div><div class="lbl">Mobis · GET</div></div>
-        </div>
+  <header class="hero">
+    <div class="reveal active">
+      <div class="terminal">
+        <div class="terminal-bar"><span></span><span></span><span></span></div>
+        <div class="type-line">&gt; loading profile: <b>Teja Swaroop Vaddi</b></div>
+        <div class="type-line">&gt; role: Embedded Systems &amp; Firmware Engineer</div>
+        <div class="type-line">&gt; status: <span class="ok">READY</span> — Open to Graduate Engineer Trainee (GET) roles</div>
       </div>
 
-      <div class="hud-card reveal active">
-        <div class="hud-head">
-          <span class="hud-title">ADAS HUD · LIVE FEED</span>
-          <span class="hud-status"><span class="dot"></span> ACTIVE</span>
-        </div>
-        <div class="radar-vis">
-          <svg viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="radarGrad">
-                <stop offset="0%" stop-color="rgba(0,212,255,.2)"/>
-                <stop offset="70%" stop-color="rgba(0,212,255,.03)"/>
-                <stop offset="100%" stop-color="transparent"/>
-              </radialGradient>
-              <linearGradient id="sweepGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stop-color="rgba(0,212,255,.6)"/>
-                <stop offset="100%" stop-color="transparent"/>
-              </linearGradient>
-            </defs>
-            <rect width="300" height="240" fill="url(#radarGrad)"/>
-            <!-- Range rings -->
-            <circle cx="150" cy="220" r="40" fill="none" stroke="rgba(0,212,255,.15)" stroke-width="1"/>
-            <circle cx="150" cy="220" r="80" fill="none" stroke="rgba(0,212,255,.12)" stroke-width="1"/>
-            <circle cx="150" cy="220" r="120" fill="none" stroke="rgba(0,212,255,.08)" stroke-width="1"/>
-            <!-- Grid lines -->
-            <line x1="150" y1="100" x2="150" y2="220" stroke="rgba(0,212,255,.1)" stroke-width="1"/>
-            <line x1="30" y1="220" x2="270" y2="220" stroke="rgba(0,212,255,.1)" stroke-width="1"/>
-            <!-- Sweep -->
-            <g class="adar-sweep" style="transform-origin:150px 220px">
-              <path d="M 150 220 L 150 100 A 120 120 0 0 1 240 180 Z" fill="url(#sweepGrad)" opacity=".3"/>
-              <line x1="150" y1="220" x2="150" y2="100" stroke="rgba(0,212,255,.5)" stroke-width="1.5"/>
-            </g>
-            <!-- Ego vehicle -->
-            <rect x="142" y="200" width="16" height="28" rx="3" fill="var(--cyan)" opacity=".8"/>
-            <!-- Detected objects -->
-            <circle cx="100" cy="140" r="4" fill="var(--warn)"><animate attributeName="opacity" values="1;.3;1" dur="2s" repeatCount="indefinite"/></circle>
-            <circle cx="210" cy="155" r="4" fill="var(--warn)"><animate attributeName="opacity" values="1;.3;1" dur="2.5s" repeatCount="indefinite"/></circle>
-            <circle cx="170" cy="115" r="3" fill="var(--danger)"><animate attributeName="opacity" values="1;.2;1" dur="1.5s" repeatCount="indefinite"/></circle>
-            <circle cx="80" cy="180" r="3" fill="var(--cyan)" opacity=".6"/>
-            <!-- Labels -->
-            <text x="100" y="132" font-family="monospace" font-size="7" fill="var(--warn)">OBJ 24m</text>
-            <text x="180" y="147" font-family="monospace" font-size="7" fill="var(--warn)">OBJ 18m</text>
-            <text x="145" y="108" font-family="monospace" font-size="7" fill="var(--danger)">PED 12m</text>
-          </svg>
-        </div>
-        <div class="hud-rows">
-          <div class="hud-row"><span class="key">LKA_STATUS</span><span class="val active">LANE_DETECTED</span></div>
-          <div class="hud-row"><span class="key">PDW_FRONT</span><span class="val">CLEAR</span></div>
-          <div class="hud-row"><span class="key">PDW_REAR_L</span><span class="val active">WARN · 0.8m</span></div>
-          <div class="hud-row"><span class="key">SPEED</span><span class="val">42 km/h</span></div>
-        </div>
+      <h1>Teja Swaroop Vaddi</h1>
+      <div class="role-line"><span class="led"></span> Embedded Systems &amp; Firmware Engineer</div>
+      <p class="lead">I design and build embedded systems, firmware, and hardware–software interfaces — real-time logic, microcontroller programming, and sensor integration turned into working, testable devices.</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#projects">View Projects</a>
+        <a class="btn btn-outline" href="mailto:tejaxswaroop@gmail.com">Email Me</a>
+        <a class="btn btn-outline" href="https://github.com/teja-swaroop23" target="_blank" rel="noopener">GitHub ↗</a>
       </div>
     </div>
-  </section>
 
-  <!-- ===== EXPERIENCE ===== -->
-  <section id="experience">
+    <aside class="device reveal active">
+      <div class="device-head">
+        <span class="part">SPECS: CORE-ACHIEVEMENTS</span>
+        <span class="pin1" title="pin 1"></span>
+      </div>
+      <div class="pin-table">
+        <div class="pin-row">
+          <div class="pin-tag">PIN 1<em>EDU</em></div>
+          <div class="pin-val"><strong>9.5 CGPA</strong><span>Bachelor's, Embedded Systems, KL University</span></div>
+        </div>
+        <div class="pin-row">
+          <div class="pin-tag">PIN 2<em>REF</em></div>
+          <div class="pin-val"><strong>96% Diploma / Rank 102</strong><span>State Rank 102 in APECET Engineering Entrance</span></div>
+        </div>
+        <div class="pin-row">
+          <div class="pin-tag">PIN 3<em>GPIO</em></div>
+          <div class="pin-val"><strong>Rank 1123</strong><span>State Rank 1123 in APPOLYCET Entrance Exam</span></div>
+        </div>
+        <div class="pin-row">
+          <div class="pin-tag">PIN 4<em>MCU</em></div>
+          <div class="pin-val"><strong>Project Builder</strong><span>Arduino, ESP32, STM32, Raspberry Pi, LPC2148</span></div>
+        </div>
+        <div class="pin-row">
+          <div class="pin-tag">PIN 5<em>LOC</em></div>
+          <div class="pin-val"><strong>India</strong><span>Open to relocation for core engineering roles</span></div>
+        </div>
+      </div>
+      <div class="status-strip"><span class="led" style="width:7px;height:7px"></span> LED ON — actively seeking graduate engineer trainee roles</div>
+    </aside>
+  </header>
+
+  <section id="about">
     <div class="section-head reveal">
-      <div class="eyebrow">Sec 01 · Trajectory</div>
-      <h2>Experience & Education</h2>
-      <p class="section-note">From embedded systems coursework to production automotive software.</p>
+      <div class="eyebrow">Sec 01 · About</div>
+      <h2>Built for Hardware, Firmware, and Embedded innovation</h2>
+      <p class="section-note">Every good board starts with a clear schematic. Here's mine.</p>
     </div>
-    <div class="panel reveal" style="max-width:780px">
-      <div class="exp-timeline">
-        <div class="exp-item">
-          <span class="exp-badge">2026 — PRESENT</span>
-          <h3>Graduate Engineer Trainee (GET)</h3>
-          <div class="company">Hyundai Mobis · ADAS Application Software Group</div>
-          <p>Working on ADAS application software for production vehicles, specifically within the Lane Keeping Assist (LKA) and Parking Distance Warning (PDW) departments. Involved in feature development, software integration, testing, and validation of safety-critical driver assistance systems that process sensor data in real time to keep vehicles in lane and detect obstacles during parking maneuvers.</p>
-          <div class="exp-tags">
-            <span>ADAS</span><span>LKA</span><span>PDW</span><span>Automotive Software</span><span>Safety-Critical</span><span>Sensor Fusion</span><span>Real-Time Systems</span>
-          </div>
-        </div>
-        <div class="exp-item">
-          <span class="exp-badge">EDUCATION</span>
-          <h3>B.Tech — Electronics & Communication Engineering</h3>
-          <div class="company">KL University · 9.5 CGPA</div>
-          <p>Specialized in embedded systems, microcontroller programming, IoT architectures, and digital electronics. Built multiple hardware projects integrating sensors, controllers, and real-time software.</p>
-          <div class="exp-tags"><span>Embedded Systems</span><span>STM32</span><span>ESP32</span><span>RTOS</span><span>VLSI</span></div>
-        </div>
-        <div class="exp-item">
-          <span class="exp-badge">DIPLOMA</span>
-          <h3>Diploma in Electronics</h3>
-          <div class="company">96% · State Rank 102 in APECET</div>
-          <p>Strong foundation in analog and digital electronics, microprocessor systems, and circuit design. Ranked among the top entrants in the state engineering entrance exam.</p>
-          <div class="exp-tags"><span>Digital Electronics</span><span>8051</span><span>LPC2148</span><span>Circuit Design</span></div>
+    <div class="about-grid">
+      <div class="panel reveal">
+        <p class="about-text">I am an <strong>Electronics and Communication Engineering</strong> student specializing in embedded systems. My interest lies in building practical systems that connect sensors, controllers, and software into reliable engineering solutions. I enjoy working with microcontrollers, communication protocols, low-level programming, and real-time problem solving — the goal is to grow into a strong core engineer with real industry impact.</p>
+      </div>
+      <div class="panel reveal">
+        <p class="eyebrow" style="margin-bottom:14px;">Focus Areas</p>
+        <div class="chips">
+          <span class="chip">STM32</span>
+          <span class="chip">ESP32</span>
+          <span class="chip">Embedded C</span>
+          <span class="chip">Python</span>
+          <span class="chip">UART</span>
+          <span class="chip">SPI</span>
+          <span class="chip">I2C</span>
+          <span class="chip">GPIO</span>
+          <span class="chip">ADC</span>
+          <span class="chip">PWM</span>
+          <span class="chip">VLSI Basics</span>
+          <span class="chip">GitHub</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== ADAS DEMO ===== -->
-  <section id="adas">
-    <div class="section-head reveal">
-      <div class="eyebrow">Sec 02 · ADAS Systems</div>
-      <h2>Lane Keeping & Parking Safety</h2>
-      <p class="section-note">The two ADAS features I work on at Hyundai Mobis — visualized as live system diagrams.</p>
-    </div>
-    <div class="adas-grid">
-
-      <div class="adas-card reveal">
-        <h3>Lane Keeping Assist (LKA)</h3>
-        <div class="subtitle">FEATURE · LANE DEPARTURE PREVENTION</div>
-        <p>Camera-based lane detection with steering intervention. The system identifies lane boundaries and applies corrective steering when the vehicle drifts, keeping it centered in the lane.</p>
-        <div class="adas-viz">
-          <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="roadGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stop-color="#0a1820"/>
-                <stop offset="100%" stop-color="#0f2030"/>
-              </linearGradient>
-            </defs>
-            <rect width="400" height="200" fill="url(#roadGrad)"/>
-            <!-- Road perspective -->
-            <polygon points="120,0 280,0 340,200 60,200" fill="rgba(0,212,255,.03)" stroke="rgba(0,212,255,.08)" stroke-width="1"/>
-            <!-- Lane lines -->
-            <line class="lka-lane-left" x1="120" y1="0" x2="60" y2="200" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="12 8" opacity=".7"/>
-            <line class="lka-lane-right" x1="280" y1="0" x2="340" y2="200" stroke="var(--accent)" stroke-width="2.5" stroke-dasharray="12 8" opacity=".7"/>
-            <!-- Center line -->
-            <line x1="200" y1="0" x2="200" y2="200" stroke="rgba(255,170,0,.15)" stroke-width="1" stroke-dasharray="6 6"/>
-            <!-- Ego car -->
-            <g class="lka-steer">
-              <rect x="185" y="120" width="30" height="55" rx="6" fill="var(--cyan)" opacity=".85"/>
-              <rect x="190" y="128" width="20" height="18" rx="3" fill="rgba(0,0,0,.3)"/>
-              <circle cx="192" cy="170" r="4" fill="#111"/>
-              <circle cx="208" cy="170" r="4" fill="#111"/>
-              <rect x="187" y="118" width="26" height="3" fill="var(--accent)" opacity=".5"/>
-            </g>
-            <!-- Detection brackets -->
-            <path d="M 115 10 L 115 25 L 130 25" fill="none" stroke="var(--accent)" stroke-width="1.5" opacity=".6"/>
-            <path d="M 285 10 L 285 25 L 270 25" fill="none" stroke="var(--accent)" stroke-width="1.5" opacity=".6"/>
-            <path d="M 115 190 L 115 175 L 130 175" fill="none" stroke="var(--accent)" stroke-width="1.5" opacity=".6"/>
-            <path d="M 285 190 L 285 175 L 270 175" fill="none" stroke="var(--accent)" stroke-width="1.5" opacity=".6"/>
-            <!-- Labels -->
-            <text x="10" y="20" font-family="monospace" font-size="9" fill="var(--accent)">LANE_L · DETECTED</text>
-            <text x="285" y="20" font-family="monospace" font-size="9" fill="var(--accent)">LANE_R · DETECTED</text>
-            <text x="140" y="195" font-family="monospace" font-size="8" fill="var(--cyan)">EGO_VEH · STEERING_CORRECT</text>
-          </svg>
-        </div>
-      </div>
-
-      <div class="adas-card reveal">
-        <h3>Parking Distance Warning (PDW)</h3>
-        <div class="subtitle">FEATURE · OBSTACLE PROXIMITY ALERT</div>
-        <p>Ultrasonic sensor-based proximity detection during parking. The system warns the driver of nearby obstacles with distance-based alert zones, escalating from visual to audible warnings as distance decreases.</p>
-        <div class="adas-viz">
-          <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="pdwGrad">
-                <stop offset="0%" stop-color="rgba(255,170,0,.15)"/>
-                <stop offset="100%" stop-color="transparent"/>
-              </radialGradient>
-            </defs>
-            <rect width="400" height="200" fill="#0a1820"/>
-            <!-- Sensor waves from rear -->
-            <circle class="pdw-wave" cx="100" cy="100" r="20" fill="none" stroke="var(--warn)" stroke-width="1.5"/>
-            <circle class="pdw-wave2" cx="100" cy="100" r="20" fill="none" stroke="var(--warn)" stroke-width="1.5"/>
-            <circle class="pdw-wave3" cx="100" cy="100" r="20" fill="none" stroke="var(--warn)" stroke-width="1.5"/>
-            <!-- Car (top-down) -->
-            <g class="adas-car-body">
-              <rect x="140" y="55" width="50" height="90" rx="10" fill="var(--cyan)" opacity=".85"/>
-              <rect x="148" y="65" width="34" height="25" rx="4" fill="rgba(0,0,0,.3)"/>
-              <rect x="148" y="115" width="34" height="22" rx="4" fill="rgba(0,0,0,.2)"/>
-              <!-- Wheels -->
-              <rect x="135" y="68" width="8" height="18" rx="2" fill="#111"/>
-              <rect x="187" y="68" width="8" height="18" rx="2" fill="#111"/>
-              <rect x="135" y="118" width="8" height="18" rx="2" fill="#111"/>
-              <rect x="187" y="118" width="8" height="18" rx="2" fill="#111"/>
-              <!-- Ultrasonic sensors -->
-              <circle cx="140" cy="100" r="3" fill="var(--accent)"/>
-              <circle cx="190" cy="100" r="3" fill="var(--accent)"/>
-            </g>
-            <!-- Obstacle -->
-            <rect x="30" y="80" width="30" height="40" rx="4" fill="var(--danger)" opacity=".7"/>
-            <text x="20" y="75" font-family="monospace" font-size="8" fill="var(--danger)">OBSTACLE</text>
-            <!-- Distance line -->
-            <line x1="100" y1="100" x2="60" y2="100" stroke="var(--warn)" stroke-width="1" stroke-dasharray="4 3"/>
-            <text x="68" y="95" font-family="monospace" font-size="8" fill="var(--warn)">0.8m</text>
-            <!-- Warning indicator -->
-            <g class="pdw-warn">
-              <polygon points="200,165 210,165 205,155" fill="var(--danger)"/>
-              <text x="215" y="167" font-family="monospace" font-size="8" fill="var(--danger)">WARNING</text>
-            </g>
-            <!-- Zone labels -->
-            <text x="250" y="40" font-family="monospace" font-size="8" fill="var(--muted)">RED ZONE · &lt;1.0m</text>
-            <text x="250" y="55" font-family="monospace" font-size="8" fill="var(--warn)">YELLOW · 1.0–1.5m</text>
-            <text x="250" y="70" font-family="monospace" font-size="8" fill="var(--accent)">GREEN · &gt;1.5m</text>
-          </svg>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ===== SKILLS ===== -->
   <section id="skills">
     <div class="section-head reveal">
-      <div class="eyebrow">Sec 03 · Toolchain</div>
-      <h2>Skills & Technologies</h2>
-      <p class="section-note">From bare-metal firmware to automotive ADAS software — the full stack.</p>
+      <div class="eyebrow">Sec 02 · Skills</div>
+      <h2>Tools and Technologies</h2>
+      <p class="section-note">Grouped like parts on a build tray — each bin ready to be reached for.</p>
     </div>
     <div class="skills-grid">
-      <div class="skill-card reveal"><span class="skill-ref">R1 · ADAS</span><h3>ADAS Software</h3><p>Lane Keeping Assist, Parking Distance Warning, sensor fusion, automotive software standards, real-time safety-critical systems.</p></div>
-      <div class="skill-card reveal"><span class="skill-ref">R2 · PROGRAMMING</span><h3>Languages</h3><p>C, C++, Embedded C, Python, automotive software development, scripting, debugging.</p></div>
-      <div class="skill-card reveal"><span class="skill-ref">R3 · PLATFORMS</span><h3>Hardware</h3><p>STM32, ESP32, ARM Cortex-M, 8051, AVR, Raspberry Pi, LPC2148, microcontroller interfacing.</p></div>
-      <div class="skill-card reveal"><span class="skill-ref">R4 · PROTOCOLS</span><h3>Communication</h3><p>UART, SPI, I2C, CAN, GPIO, ADC, PWM, sensor communication and control.</p></div>
-      <div class="skill-card reveal"><span class="skill-ref">R5 · TOOLCHAIN</span><h3>Tools</h3><p>Keil uVision, STM32CubeIDE, Git, GitHub, Python libraries, automotive dev tooling.</p></div>
-      <div class="skill-card reveal"><span class="skill-ref">R6 · CORE</span><h3>Engineering</h3><p>Digital electronics, embedded architecture, VLSI basics, computer vision, edge AI, hardware reasoning.</p></div>
+      <div class="skill-card reveal"><span class="skill-ref">R1 · PROGRAMMING</span><h3>Languages</h3><p>C, C++, Python, Embedded C, logic design, debugging, scripting.</p></div>
+      <div class="skill-card reveal"><span class="skill-ref">R2 · PLATFORMS</span><h3>Hardware Platforms</h3><p>STM32, ESP32, ARM Cortex-M, 8051, AVR, microcontroller interfacing.</p></div>
+      <div class="skill-card reveal"><span class="skill-ref">R3 · PROTOCOLS</span><h3>Communication</h3><p>UART, SPI, I2C, GPIO, ADC, PWM, sensor communication and control.</p></div>
+      <div class="skill-card reveal"><span class="skill-ref">R4 · TOOLCHAIN</span><h3>Tools</h3><p>Keil uVision, STM32CubeIDE, PuTTY, Git, GitHub, Python libraries.</p></div>
+      <div class="skill-card reveal"><span class="skill-ref">R5 · CORE</span><h3>Engineering Core</h3><p>Digital electronics, embedded architecture, VLSI basics, hardware reasoning.</p></div>
+      <div class="skill-card reveal"><span class="skill-ref">R6 · DELIVERY</span><h3>Project Execution</h3><p>Prototype development, simulation, integration, testing, documentation.</p></div>
     </div>
   </section>
 
-  <!-- ===== PROJECTS ===== -->
-  <section id="projects">
-    <div class="section-head reveal">
-      <div class="eyebrow">Sec 04 · Build Log</div>
-      <h2>Engineering Projects</h2>
-      <p class="section-note">Hardware meets software — each project solving a real-world problem with embedded systems.</p>
-    </div>
-    <div class="projects-grid">
-      <article class="project-card reveal">
-        <span class="ic-label">PRJ · 01</span>
-        <h3>Real-Time Threat Mitigation System</h3>
-        <div class="project-tech">Raspberry Pi · YOLOv11 · Edge AI</div>
-        <p>Built a low-latency detection and alert pipeline optimized for constrained edge hardware. Demonstrates real-time sensing, processing, and response — a foundational concept that directly maps to ADAS perception pipelines.</p>
-        <div class="pin-legend"><span>Computer Vision</span><span>Edge Processing</span><span>Automation</span></div>
-        <div class="project-link"><a href="https://github.com/teja-swaroop23" target="_blank" rel="noopener">View on GitHub ↗</a></div>
-      </article>
-      <article class="project-card reveal">
-        <span class="ic-label">PRJ · 02</span>
-        <h3>Smart Anti-Sleeping Glasses</h3>
-        <div class="project-tech">IR Sensor · MCU · Buzzer</div>
-        <p>Designed a wearable safety system that detects drowsiness and triggers real-time alerts. Focused on simple, reliable hardware sensing — the same principles behind driver monitoring systems in modern ADAS.</p>
-        <div class="pin-legend"><span>Wearable</span><span>Safety System</span><span>Real-Time Alert</span></div>
-        <div class="project-link"><a href="https://github.com/teja-swaroop23" target="_blank" rel="noopener">View on GitHub ↗</a></div>
-      </article>
-      <article class="project-card reveal">
-        <span class="ic-label">PRJ · 03</span>
-        <h3>Sign-to-Text Communication Glove</h3>
-        <div class="project-tech">Flex Sensors · I2C · Embedded</div>
-        <p>Developed a gesture-based communication glove that converts hand motion into readable digital output using sensor fusion and interfacing. Showcases multi-sensor integration and real-time data processing.</p>
-        <div class="pin-legend"><span>Assistive Tech</span><span>Sensor Fusion</span><span>Low-Latency</span></div>
-        <div class="project-link"><a href="https://github.com/teja-swaroop23" target="_blank" rel="noopener">View on GitHub ↗</a></div>
-      </article>
-    </div>
-  </section>
-
-  <!-- ===== GITHUB ===== -->
-  <section id="github">
-    <div class="section-head reveal">
-      <div class="eyebrow">Sec 05 · Repositories</div>
-      <h2>GitHub Projects</h2>
-      <p class="section-note">Live from GitHub — fetched in real time from my repositories.</p>
-    </div>
-    <div class="gh-grid" id="ghGrid">
-      <div class="gh-card" style="grid-column:1/-1;text-align:center;padding:40px">
-        <div class="gh-name" style="color:var(--muted)">Loading repositories...</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CERTIFICATIONS ===== -->
   <section id="certifications">
     <div class="section-head reveal">
-      <div class="eyebrow">Sec 06 · Verifications</div>
-      <h2>Certifications & Training</h2>
+      <div class="eyebrow">Sec 03 · Verifications</div>
+      <h2>Certifications &amp; Training</h2>
       <p class="section-note">Professional development and technical training credentials.</p>
     </div>
     <div class="panel reveal">
-      <div style="display:flex;flex-wrap:wrap;gap:12px">
-        <span style="font-family:var(--mono);font-size:.8rem;color:var(--silk);padding:10px 14px;border-radius:6px;border:1px solid var(--line);background:rgba(0,212,255,.05);padding-left:22px;position:relative"><span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:5px;height:5px;border-radius:50%;background:var(--accent)"></span>Arm Cortex-M Architecture and Software Development (Coursera)</span>
-        <span style="font-family:var(--mono);font-size:.8rem;color:var(--silk);padding:10px 14px;border-radius:6px;border:1px solid var(--line);background:rgba(0,212,255,.05);padding-left:22px;position:relative"><span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:5px;height:5px;border-radius:50%;background:var(--accent)"></span>Embedded System Application and IoT Programming (TARAS)</span>
-        <span style="font-family:var(--mono);font-size:.8rem;color:var(--silk);padding:10px 14px;border-radius:6px;border:1px solid var(--line);background:rgba(0,212,255,.05);padding-left:22px;position:relative"><span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:5px;height:5px;border-radius:50%;background:var(--accent)"></span>Introduction to Electronics (Coursera)</span>
-        <span style="font-family:var(--mono);font-size:.8rem;color:var(--silk);padding:10px 14px;border-radius:6px;border:1px solid var(--line);background:rgba(0,212,255,.05);padding-left:22px;position:relative"><span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:5px;height:5px;border-radius:50%;background:var(--accent)"></span>Linear Circuits 1: DC Analysis (Coursera)</span>
-        <span style="font-family:var(--mono);font-size:.8rem;color:var(--silk);padding:10px 14px;border-radius:6px;border:1px solid var(--line);background:rgba(0,212,255,.05);padding-left:22px;position:relative"><span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:5px;height:5px;border-radius:50%;background:var(--accent)"></span>BSNL Internship Training</span>
-        <span style="font-family:var(--mono);font-size:.8rem;color:var(--silk);padding:10px 14px;border-radius:6px;border:1px solid var(--line);background:rgba(0,212,255,.05);padding-left:22px;position:relative"><span style="position:absolute;left:10px;top:50%;transform:translateY(-50%);width:5px;height:5px;border-radius:50%;background:var(--accent)"></span>Cisco Introduction to IoT and Digital Transformation</span>
+      <div class="chips" style="gap: 12px;">
+        <span class="chip">Arm Cortex-M Architecture and Software Development (Coursera)</span>
+        <span class="chip">Embedded System Application and IoT Programming (TARAS)</span>
+        <span class="chip">Introduction to Electronics (Coursera)</span>
+        <span class="chip">Linear Circuits 1: DC Analysis (Coursera)</span>
+        <span class="chip">BSNL Internship Training</span>
+        <span class="chip">Cisco Introduction to IoT and Digital Transformation</span>
       </div>
     </div>
   </section>
 
-  <!-- ===== CONTACT ===== -->
+  <section id="projects">
+    <div class="section-head reveal">
+      <div class="eyebrow">Sec 04 · Populated ICs</div>
+      <h2>Selected Work</h2>
+      <p class="section-note">Three components soldered onto the board — each one solving a real problem.</p>
+    </div>
+    <div class="projects-grid">
+      <article class="project-card reveal">
+        <span class="ic-label">IC · U1</span>
+        <h3>Real-Time Threat Mitigation System</h3>
+        <div class="project-tech">Raspberry Pi · YOLOv11 · Edge AI</div>
+        <p>Built a low-latency detection and alert pipeline optimized for constrained edge hardware. Demonstrates real-time sensing, processing, and response.</p>
+        <div class="pin-legend"><span>Computer Vision</span><span>Edge Processing</span><span>Automation</span></div>
+      </article>
+      <article class="project-card reveal">
+        <span class="ic-label">IC · U2</span>
+        <h3>Smart Anti-Sleeping Glasses</h3>
+        <div class="project-tech">IR Sensor · Microcontroller · Buzzer</div>
+        <p>Designed a wearable safety system that detects drowsiness and triggers real-time alerts, focused on simple hardware and reliable sensing.</p>
+        <div class="pin-legend"><span>Wearable</span><span>Safety System</span><span>Real-Time Alert</span></div>
+      </article>
+      <article class="project-card reveal">
+        <span class="ic-label">IC · U3</span>
+        <h3>Sign-to-Text Communication Glove</h3>
+        <div class="project-tech">Flex Sensors · I2C · Embedded System</div>
+        <p>Developed a gesture-based communication glove that converts hand motion into readable digital output, using sensor fusion and interfacing.</p>
+        <div class="pin-legend"><span>Targeted Assistive Tech</span><span>Sensor Fusion</span><span>Low-Latency Output</span></div>
+      </article>
+    </div>
+  </section>
+
   <section id="contact">
     <div class="section-head reveal">
-      <div class="eyebrow">Sec 07 · I/O Header</div>
-      <h2>Let's connect</h2>
+      <div class="eyebrow">Sec 05 · Connector Header</div>
+      <h2>Let's build something technical</h2>
     </div>
     <div class="connector reveal">
-      <p>Open to embedded systems, ADAS, and automotive software engineering opportunities. Currently contributing to production ADAS features at Hyundai Mobis and always looking to connect with engineers and teams building the future of mobility.</p>
+      <p>I am open to Graduate Engineer Trainee (GET) roles, embedded systems opportunities, firmware development positions, and semiconductor-related entry-level roles where I can contribute and keep learning.</p>
       <div class="connector-links">
         <a class="btn btn-primary" href="mailto:tejaxswaroop@gmail.com">Email Me</a>
         <a class="btn btn-outline" href="https://www.linkedin.com/in/tejaswaroopvaddi/" target="_blank" rel="noopener">LinkedIn ↗</a>
@@ -717,458 +510,34 @@
       </div>
     </div>
   </section>
-
 </main>
 
-<footer>SYSTEM REV 2026.11 · ADAS SOFTWARE ENGINEER · HYUNDAI MOBIS · © TEJA SWAROOP VADDI</footer>
+<footer>BOARD REV 2026.07 · DESIGNED &amp; ASSEMBLED IN ANDHRA PRADESH, IN · © TEJA SWAROOP VADDI</footer>
 
-<!-- ===== THREE.JS 3D SCENE ===== -->
-<script type="importmap">
-{
-  "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
-  }
-}
-</script>
-
-<script type="module">
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-
-const container = document.getElementById('canvas-container');
-const scene = new THREE.Scene();
-scene.fog = new THREE.FogExp2(0x050810, 0.018);
-
-const camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 0.1, 1000);
-camera.position.set(0, 4, 14);
-camera.lookAt(0, 1, 0);
-
-const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-renderer.setClearColor(0x000000, 0);
-renderer.outputColorSpace = THREE.SRGBColorSpace;
-renderer.toneMapping = THREE.ACESFilmicToneMapping;
-renderer.toneMappingExposure = 1.0;
-container.appendChild(renderer.domElement);
-
-// Environment map for realistic reflections on car paint
-const pmremGenerator = new THREE.PMREMGenerator(renderer);
-const roomEnv = new RoomEnvironment();
-const envMap = pmremGenerator.fromScene(roomEnv, 0.04).texture;
-scene.environment = envMap;
-
-// Lighting
-const ambient = new THREE.AmbientLight(0x1a2a3a, 0.5);
-scene.add(ambient);
-
-const dirLight = new THREE.DirectionalLight(0x00d4ff, 1.2);
-dirLight.position.set(5, 10, 5);
-scene.add(dirLight);
-
-const fillLight = new THREE.DirectionalLight(0x2ee6d6, 0.4);
-fillLight.position.set(-5, 3, -5);
-scene.add(fillLight);
-
-const rimLight = new THREE.DirectionalLight(0xff3366, 0.3);
-rimLight.position.set(0, 5, -8);
-scene.add(rimLight);
-
-// ---- Ground plane (grid) ----
-const gridGeom = new THREE.PlaneGeometry(200, 200, 40, 40);
-const gridMat = new THREE.MeshBasicMaterial({ color: 0x0a1828, transparent: true, opacity: 0.3 });
-const ground = new THREE.Mesh(gridGeom, gridMat);
-ground.rotation.x = -Math.PI / 2;
-ground.position.y = -0.5;
-scene.add(ground);
-
-const gridHelper = new THREE.GridHelper(200, 50, 0x00d4ff, 0x0a2030);
-gridHelper.position.y = -0.49;
-gridHelper.material.opacity = 0.15;
-gridHelper.material.transparent = true;
-scene.add(gridHelper);
-
-// ---- Fallback primitive car (used if GLB fails to load) ----
-function buildFallbackCar() {
-  const car = new THREE.Group();
-  const bodyGeo = new THREE.BoxGeometry(4, 1, 2);
-  const bodyMat = new THREE.MeshPhongMaterial({ color: 0x00d4ff, emissive: 0x002030, shininess: 80 });
-  const body = new THREE.Mesh(bodyGeo, bodyMat);
-  body.position.y = 0.8;
-  car.add(body);
-  const cabinGeo = new THREE.BoxGeometry(2.2, 0.9, 1.7);
-  const cabinMat = new THREE.MeshPhongMaterial({ color: 0x0a1828, emissive: 0x001020, shininess: 100, transparent: true, opacity: 0.85 });
-  const cabin = new THREE.Mesh(cabinGeo, cabinMat);
-  cabin.position.set(-0.2, 1.6, 0);
-  car.add(cabin);
-  const hlGeo = new THREE.BoxGeometry(0.15, 0.25, 0.4);
-  const hlL = new THREE.Mesh(hlGeo, new THREE.MeshBasicMaterial({ color: 0xffffff }));
-  hlL.position.set(2.05, 0.8, 0.6);
-  car.add(hlL);
-  const hlR = new THREE.Mesh(hlGeo, new THREE.MeshBasicMaterial({ color: 0xffffff }));
-  hlR.position.set(2.05, 0.8, -0.6);
-  car.add(hlR);
-  const tlL = new THREE.Mesh(hlGeo, new THREE.MeshBasicMaterial({ color: 0xff3366 }));
-  tlL.position.set(-2.05, 0.8, 0.6);
-  car.add(tlL);
-  const tlR = new THREE.Mesh(hlGeo, new THREE.MeshBasicMaterial({ color: 0xff3366 }));
-  tlR.position.set(-2.05, 0.8, -0.6);
-  car.add(tlR);
-  const wheelGeo = new THREE.CylinderGeometry(0.5, 0.5, 0.3, 20);
-  const wheelMat = new THREE.MeshPhongMaterial({ color: 0x111111, shininess: 20 });
-  const wheels = [];
-  [[1.3,0.4,1.1],[1.3,0.4,-1.1],[-1.3,0.4,1.1],[-1.3,0.4,-1.1]].forEach(pos => {
-    const w = new THREE.Mesh(wheelGeo, wheelMat);
-    w.rotation.x = Math.PI / 2;
-    w.position.set(...pos);
-    car.add(w);
-    wheels.push(w);
-  });
-  const glowGeo = new THREE.PlaneGeometry(4.5, 2.5);
-  const glow = new THREE.Mesh(glowGeo, new THREE.MeshBasicMaterial({ color: 0x00d4ff, transparent: true, opacity: 0.15 }));
-  glow.rotation.x = -Math.PI / 2;
-  glow.position.y = 0.01;
-  car.add(glow);
-  car.userData.wheels = wheels;
-  car.userData.isFallback = true;
-  return car;
-}
-
-// ---- Car holder group (model or fallback) ----
-const car = new THREE.Group();
-scene.add(car);
-let carWheels = [];
-let modelLoaded = false;
-
-// ---- Load real Ferrari GLB model ----
-const loader = new GLTFLoader();
-const modelUrl = 'https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/models/gltf/ferrari.glb';
-
-loader.load(
-  modelUrl,
-  (gltf) => {
-    const model = gltf.scene;
-
-    // Auto-scale and center the model
-    const box = new THREE.Box3().setFromObject(model);
-    const size = box.getSize(new THREE.Vector3());
-    const center = box.getCenter(new THREE.Vector3());
-    const maxDim = Math.max(size.x, size.y, size.z);
-    const scale = 5 / maxDim;
-    model.scale.setScalar(scale);
-
-    // Re-center after scaling
-    const scaledBox = new THREE.Box3().setFromObject(model);
-    const scaledCenter = scaledBox.getCenter(new THREE.Vector3());
-    model.position.sub(scaledCenter);
-
-    // Lift to ground level
-    const finalBox = new THREE.Box3().setFromObject(model);
-    model.position.y -= finalBox.min.y - 0.2;
-
-    // Orient: face +X direction (headlights forward)
-    model.rotation.y = -Math.PI / 2;
-
-    // Apply enhanced materials to make it look premium
-    model.traverse((child) => {
-      if (child.isMesh) {
-        child.castShadow = true;
-        child.receiveShadow = true;
-        if (child.material) {
-          child.material.envMapIntensity = 1.5;
-          if (child.material.metalness !== undefined) {
-            child.material.metalness = Math.min(child.material.metalness + 0.1, 1.0);
-            child.material.roughness = Math.max(child.material.roughness - 0.05, 0.0);
-          }
-        }
-      }
-    });
-
-    // Collect wheel meshes for spin animation (heuristic: meshes with 'wheel' in name or low y position)
-    model.traverse((child) => {
-      if (child.isMesh && /wheel/i.test(child.name)) {
-        carWheels.push(child);
-      }
-    });
-
-    car.add(model);
-    modelLoaded = true;
-    const loaderEl = document.getElementById('car-loader');
-    if (loaderEl) loaderEl.classList.add('hidden');
-  },
-  (progress) => {
-    // Loading progress (could show percentage)
-  },
-  (error) => {
-    // Fallback to primitive car if GLB fails
-    const fallback = buildFallbackCar();
-    carWheels = fallback.userData.wheels;
-    car.add(fallback);
-    const loaderEl = document.getElementById('car-loader');
-    if (loaderEl) loaderEl.classList.add('hidden');
-  }
-);
-
-// ---- ADAS sensor beams (cone-like) ----
-function buildSensorBeams() {
-  const group = new THREE.Group();
-
-  // Front camera cone (LKA) — projects forward from the car
-  const coneGeo = new THREE.ConeGeometry(2.5, 8, 20, 1, true);
-  const coneMat = new THREE.MeshBasicMaterial({ color: 0x00d4ff, transparent: true, opacity: 0.06, side: THREE.DoubleSide, depthWrite: false });
-  const frontCone = new THREE.Mesh(coneGeo, coneMat);
-  frontCone.rotation.x = Math.PI / 2;
-  frontCone.position.set(5.5, 1, 0);
-  group.add(frontCone);
-
-  // Edge lines for front cone
-  const coneEdges = new THREE.EdgesGeometry(coneGeo);
-  const coneLineMat = new THREE.LineBasicMaterial({ color: 0x00d4ff, transparent: true, opacity: 0.35 });
-  const frontConeEdges = new THREE.LineSegments(coneEdges, coneLineMat);
-  frontConeEdges.rotation.x = Math.PI / 2;
-  frontConeEdges.position.set(5.5, 1, 0);
-  group.add(frontConeEdges);
-
-  // Front LKA beam line (center)
-  const beamLineGeo = new THREE.BufferGeometry().setFromPoints([
-    new THREE.Vector3(1.5, 0.05, 0),
-    new THREE.Vector3(12, 0.05, 0)
-  ]);
-  const beamLineMat = new THREE.LineBasicMaterial({ color: 0x00d4ff, transparent: true, opacity: 0.4 });
-  const beamLine = new THREE.Line(beamLineGeo, beamLineMat);
-  group.add(beamLine);
-
-  // Rear ultrasonic beams (PDW) — fan out from rear
-  const beamPositions = [[-2.5, 0.8, 0.9], [-2.5, 0.8, -0.9], [-2.5, 0.8, 0], [-2.5, 0.8, 0.45], [-2.5, 0.8, -0.45]];
-  beamPositions.forEach(pos => {
-    const beamGeo = new THREE.CylinderGeometry(0.02, 0.7, 3.5, 8, 1, true);
-    const beamMat = new THREE.MeshBasicMaterial({ color: 0xffaa00, transparent: true, opacity: 0.1, side: THREE.DoubleSide, depthWrite: false });
-    const beam = new THREE.Mesh(beamGeo, beamMat);
-    beam.rotation.z = Math.PI / 2;
-    beam.position.set(pos[0] - 1.8, pos[1], pos[2]);
-    group.add(beam);
-  });
-
-  // Rear PDW detection arc
-  const arcGeo = new THREE.RingGeometry(3, 3.15, 32, 1, Math.PI * 0.7, Math.PI * 0.6);
-  const arcMat = new THREE.MeshBasicMaterial({ color: 0xffaa00, transparent: true, opacity: 0.2, side: THREE.DoubleSide });
-  const arc = new THREE.Mesh(arcGeo, arcMat);
-  arc.position.set(-2.5, 0.05, 0);
-  arc.rotation.x = -Math.PI / 2;
-  group.add(arc);
-
-  return group;
-}
-
-const sensorBeams = buildSensorBeams();
-scene.add(sensorBeams);
-
-// ---- Lane lines on ground ----
-function buildLanes() {
-  const group = new THREE.Group();
-  const laneMat = new THREE.MeshBasicMaterial({ color: 0x00d4ff, transparent: true, opacity: 0.3 });
-
-  for (let z = -80; z < 80; z += 8) {
-    const stripeL = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.02, 4), laneMat);
-    stripeL.position.set(-2.2, -0.45, z);
-    group.add(stripeL);
-
-    const stripeR = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.02, 4), laneMat);
-    stripeR.position.set(2.2, -0.45, z);
-    group.add(stripeR);
-  }
-  return group;
-}
-
-const lanes = buildLanes();
-scene.add(lanes);
-
-// ---- Floating particles ----
-const particleCount = 120;
-const particleGeo = new THREE.BufferGeometry();
-const positions = new Float32Array(particleCount * 3);
-const speeds = [];
-for (let i = 0; i < particleCount; i++) {
-  positions[i * 3] = (Math.random() - 0.5) * 60;
-  positions[i * 3 + 1] = Math.random() * 15;
-  positions[i * 3 + 2] = (Math.random() - 0.5) * 60;
-  speeds.push(0.02 + Math.random() * 0.04);
-}
-particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-const particleMat = new THREE.PointsMaterial({ color: 0x2ee6d6, size: 0.08, transparent: true, opacity: 0.5 });
-const particles = new THREE.Points(particleGeo, particleMat);
-scene.add(particles);
-
-// ---- Mouse parallax ----
-let mouseX = 0, mouseY = 0;
-let targetCamX = 0, targetCamY = 4;
-window.addEventListener('mousemove', (e) => {
-  mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
-  mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-});
-
-// ---- Resize ----
-window.addEventListener('resize', () => {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth, window.innerHeight);
-});
-
-// ---- Animation loop ----
-let time = 0;
-function animate() {
-  requestAnimationFrame(animate);
-  time += 0.016;
-
-  // Car gentle float + rotation
-  car.position.y = Math.sin(time * 0.8) * 0.15;
-  car.rotation.y = Math.sin(time * 0.3) * 0.15;
-
-  // Wheel spin (works for both real model wheels and fallback)
-  if (carWheels.length > 0) {
-    carWheels.forEach(w => { w.rotation.x += 0.08; });
-  }
-
-  // Sensor beams pulse
-  sensorBeams.children.forEach((child, i) => {
-    if (child.material) {
-      child.material.opacity = 0.06 + Math.sin(time * 2 + i) * 0.04;
-    }
-  });
-
-  // Lane stripes scroll
-  lanes.children.forEach(stripe => {
-    stripe.position.z += 0.3;
-    if (stripe.position.z > 80) stripe.position.z -= 160;
-  });
-
-  // Particles drift
-  const pos = particleGeo.attributes.position.array;
-  for (let i = 0; i < particleCount; i++) {
-    pos[i * 3 + 1] += speeds[i];
-    if (pos[i * 3 + 1] > 15) pos[i * 3 + 1] = 0;
-  }
-  particleGeo.attributes.position.needsUpdate = true;
-
-  // Camera parallax
-  targetCamX = mouseX * 3;
-  targetCamY = 4 - mouseY * 1.5;
-  camera.position.x += (targetCamX - camera.position.x) * 0.05;
-  camera.position.y += (targetCamY - camera.position.y) * 0.05;
-  camera.lookAt(0, 1, 0);
-
-  renderer.render(scene, camera);
-}
-animate();
-</script>
-
-<!-- ===== UI INTERACTIONS & GITHUB FETCH ===== -->
 <script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); });
-  }, { threshold: 0.12 });
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+  }, { threshold:.15 });
   reveals.forEach(el => io.observe(el));
 
-  // Nav active link tracking
   const navLinks = document.querySelectorAll('.nav-links a');
-  const sectionIds = ['experience','adas','skills','projects','github','contact'];
-  function onScroll() {
+  const sections = ['about','skills','certifications','projects','contact'].map(id => document.getElementById(id));
+  function onScroll(){
     let current = '';
-    sectionIds.forEach(id => {
-      const sec = document.getElementById(id);
-      if (sec && sec.getBoundingClientRect().top <= 140) current = id;
-    });
+    sections.forEach(sec => { if(sec.getBoundingClientRect().top <= 140) current = sec.id; });
     navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
   }
   window.addEventListener('scroll', onScroll);
   window.addEventListener('load', onScroll);
 
-  // Mobile nav toggle
   const toggle = document.getElementById('navToggle');
   const links = document.getElementById('navLinks');
   toggle.addEventListener('click', () => {
-    links.classList.toggle('open');
+    const open = links.style.display === 'flex';
+    links.style.display = open ? 'none' : 'flex';
+    links.style.cssText += open ? '' : 'position:absolute;top:64px;left:4%;right:4%;flex-direction:column;background:rgba(6,15,10,.97);border:1px solid var(--line);border-radius:12px;padding:10px;gap:2px;';
   });
-  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
-
-  // GitHub repos fetch
-  (async function fetchGitHub() {
-    const grid = document.getElementById('ghGrid');
-    try {
-      const res = await fetch('https://api.github.com/users/teja-swaroop23/repos?sort=updated&per_page=12');
-      if (!res.ok) throw new Error('fetch failed');
-      const repos = await res.json();
-
-      const langColors = {
-        'Python': '#3572A5',
-        'HTML': '#e34c26',
-        'C': '#555555',
-        'C++': '#f34b7d',
-        'JavaScript': '#f1e05a',
-        'Jupyter Notebook': '#DA5B0B',
-      };
-
-      const repoInfo = {
-        'my-portfolio': 'Personal portfolio website — this site you\'re looking at.',
-        'teja-swaroop23': 'GitHub profile README with featured engineering projects.',
-        'portfolio': 'Earlier version of my portfolio site.',
-        'PRODIGY_CS_TASK_01': 'Caesar Cipher encryption/decryption tool built in Python.',
-        'PRODIGY_CS_TASK_02': 'Password strength checker — cybersecurity internship task.',
-        'PRODIGY_CS_TASK_03': 'Pixel manipulation image encryption tool.',
-        'PRODIGY_CS_TASK_04': 'Educational keylogger in Python — cybersecurity internship.',
-        'PRODIGY_CS_TASK_05': 'Network packet sniffer using Python.',
-      };
-
-      grid.innerHTML = '';
-      repos.forEach(repo => {
-        const card = document.createElement('div');
-        card.className = 'gh-card';
-        const lang = repo.language || 'N/A';
-        const langColor = langColors[lang] || '#7a8a9a';
-        const desc = repoInfo[repo.name] || repo.description || 'No description available.';
-        const updated = new Date(repo.updated_at).toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
-
-        card.innerHTML = `
-          <div class="gh-name">${repo.name}</div>
-          <div class="gh-desc">${desc}</div>
-          <div class="gh-meta">
-            <span class="gh-lang"><span class="dot" style="background:${langColor}"></span>${lang}</span>
-            <span>Updated ${updated}</span>
-          </div>
-          <a class="gh-link" href="${repo.html_url}" target="_blank" rel="noopener">Open repo ↗</a>
-        `;
-        grid.appendChild(card);
-      });
-    } catch (err) {
-      // Static fallback
-      const fallback = [
-        { name: 'my-portfolio', desc: 'Personal portfolio website — this site.', lang: 'HTML', url: 'https://github.com/teja-swaroop23/my-portfolio' },
-        { name: 'PRODIGY_CS_TASK_01', desc: 'Caesar Cipher encryption/decryption in Python.', lang: 'Python', url: 'https://github.com/teja-swaroop23/PRODIGY_CS_TASK_01' },
-        { name: 'PRODIGY_CS_TASK_04', desc: 'Educational keylogger in Python.', lang: 'Python', url: 'https://github.com/teja-swaroop23/PRODIGY_CS_TASK_04' },
-        { name: 'PRODIGY_CS_TASK_05', desc: 'Network packet sniffer using Python.', lang: 'Python', url: 'https://github.com/teja-swaroop23/PRODIGY_CS_TASK_05' },
-        { name: 'PRODIGY_CS_TASK_03', desc: 'Pixel manipulation image encryption tool.', lang: 'Python', url: 'https://github.com/teja-swaroop23/PRODIGY_CS_TASK_03' },
-        { name: 'PRODIGY_CS_TASK_02', desc: 'Password strength checker.', lang: 'Python', url: 'https://github.com/teja-swaroop23/PRODIGY_CS_TASK_02' },
-      ];
-      const langColors = { 'Python': '#3572A5', 'HTML': '#e34c26' };
-      grid.innerHTML = '';
-      fallback.forEach(repo => {
-        const card = document.createElement('div');
-        card.className = 'gh-card';
-        card.innerHTML = `
-          <div class="gh-name">${repo.name}</div>
-          <div class="gh-desc">${repo.desc}</div>
-          <div class="gh-meta"><span class="gh-lang"><span class="dot" style="background:${langColors[repo.lang]||'#7a8a9a'}"></span>${repo.lang}</span></div>
-          <a class="gh-link" href="${repo.url}" target="_blank" rel="noopener">Open repo ↗</a>
-        `;
-        grid.appendChild(card);
-      });
-    }
-  })();
 </script>
-
 </body>
 </html>
